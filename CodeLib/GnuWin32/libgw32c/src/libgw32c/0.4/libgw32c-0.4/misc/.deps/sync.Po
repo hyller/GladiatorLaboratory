@@ -1,5 +1,0 @@
-sync.o sync.o: sync.c ../include/libc-symbols.h ../config.h
-
-../include/libc-symbols.h:
-
-../config.h:

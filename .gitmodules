@@ -1,9 +1,0 @@
-[submodule "CodeLib/cii"]
-	path = CodeLib/cii
-	url = https://github.com/drh/cii.git
-[submodule "CodeLib/Unity"]
-	path = CodeLib/Unity
-	url = https://github.com/ThrowTheSwitch/Unity.git
-[submodule "CodeLib/cpputest"]
-	path = CodeLib/cpputest
-	url = https://github.com/cpputest/cpputest.git

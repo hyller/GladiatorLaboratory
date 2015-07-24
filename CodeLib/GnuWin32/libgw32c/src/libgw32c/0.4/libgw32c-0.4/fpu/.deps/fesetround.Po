@@ -1,8 +1,0 @@
-fesetround.o fesetround.o: fesetround.c ../include/libc-symbols.h \
-  ../config.h h:/mingw/3.3.1/include/fenv.h
-
-../include/libc-symbols.h:
-
-../config.h:
-
-h:/mingw/3.3.1/include/fenv.h:

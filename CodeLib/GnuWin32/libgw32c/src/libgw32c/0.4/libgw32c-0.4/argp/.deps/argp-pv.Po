@@ -1,5 +1,0 @@
-argp-pv.o argp-pv.o: argp-pv.c ../include/libc-symbols.h ../config.h
-
-../include/libc-symbols.h:
-
-../config.h:

@@ -1,5 +1,0 @@
-argp-ba.o argp-ba.o: argp-ba.c ../include/libc-symbols.h ../config.h
-
-../include/libc-symbols.h:
-
-../config.h:

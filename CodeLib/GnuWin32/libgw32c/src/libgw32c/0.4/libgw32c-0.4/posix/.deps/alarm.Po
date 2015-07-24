@@ -1,5 +1,0 @@
-alarm.o alarm.o: alarm.c ../include/libc-symbols.h ../config.h
-
-../include/libc-symbols.h:
-
-../config.h:

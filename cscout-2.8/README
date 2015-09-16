@@ -1,0 +1,29 @@
+CScout is a source code analyzer and refactoring browser for collections
+of C programs.  It can process workspaces of multiple projects (we define
+a project as a collection of C source files that are linked together)
+mapping the complexity introduced by the C preprocessor back into
+the original C source code files.  CScout takes advantage of modern
+hardware advances (fast processors and large memory capacities) to
+analyze C source code beyond the level of detail and accuracy provided
+by  current compilers and linkers.  The analysis CScout performs takes
+into account the identifier scopes introduced by the C preprocessor and
+the C language proper scopes and namespaces.  CScout has already been
+applied on projects of tens of thousands of lines to millions of lines,
+like the Linux, OpenSolaris, and FreeBSD kernels, and the Apache web
+server.
+
+This free unsupported version of CScout is distributed under the terms
+of the CScout Public License, which is available in the accompanying
+documentation.
+
+For updates visit the project's Web site: http://www.spinellis.gr/cscout
+
+The reading of software code and measures to improve source code quality
+are examined in detail in my books:
+Code Reading: The Open Source Perspective, Addison-Wesley 2003.
+http://www.spinellis.gr/codereading
+Code Quality: The Open Source Perspective, Addison-Wesley 2006.
+http://www.spinellis.gr/codequality
+
+
+Diomidis Spinellis - June 2003, October 2006, April 2008

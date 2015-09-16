@@ -1,0 +1,101 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<title>Include Graphs</title>
+
+<meta name="Generator" content="$Id: thread.pl 1.63 2008/10/15 08:16:27 dds Exp $" />
+<meta name="Author" content="Diomidis Spinellis" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:dds@aueb.gr" />
+<link rel="ToC" href="index.html" />
+<link rev="Subdocument" href="index.html" />
+<link rel="previous" href="./fileq.html" />
+<link rel="next" href="./name.html" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- LS-START --><script language="vbscript">
+sub document_onKeyDown()
+   keypressed = window.event.keyCode
+   select case keypressed
+     case 78 'ALT-B
+        document.all("next").click
+     case 80 'ALT-P
+        document.all("previous").click
+     case 67 'ALT-C
+        document.all("contents").click
+   end select
+end sub
+</script><!-- LS-END -->
+</head>
+<body>
+<h1>Include Graphs</h1>
+<em>CScout</em> can create include graphs that list how files include each
+other.
+
+<p>
+Two global options
+specify the format of the include graph and the content
+on each graph's node.
+Through these options you can obtain graphs in
+<ul>
+<li>plain text form: suitable for processing with other tools,</li>
+<li> HTML: suitable for browsing via <em>CScout</em>,</li>
+<li> dot: suitable for generating high-quality graphics files,</li>
+<li> SVG: suitable for graphical browsing, if your browser supports this format, and</li>
+<li> GIF: suitable for viewing on SVG-challenged browsers.</li>
+</ul>
+All diagrams follow the notation
+<pre>
+including file -&gt; included file
+</pre>
+
+<p>
+Two links on the main page
+(file include graph - writable files and
+file include graph - all files)
+can give you the include graphs of the complete program.
+For programs larger than a hundred thousand lines,
+these graphs are only useful in their textual form.
+In their graphical form, even with node information disabled,
+they can only serve to give you a rough idea of how the program is
+structured.
+The following image depicts how writable (non-system) files are
+included in the <em>awk</em> source code.
+<br> <img src="awkinc.gif"><br>
+and the following is a part of the include file structure of the
+Windows Research Kernel
+<br> <img src="wrk-inc.gif"><p>
+
+More useful are typically the include graphs that can be generated for
+individual files.
+These can allow you to see what paths can possibly lead to the inclusion
+of a given file (include graph of all including files) or what files
+a given file includes (include graph of all included files).
+
+(call graph of all callers),
+which functions can be reached starting from a given function,
+and how functions in a given file relate to each other.
+<p>
+As an example, the following diagram depicts all files that
+<code>main.c</code> includes
+<br> <img src="main-inc.gif">
+<br>
+while the following diagrams shows all the files including
+(directly or indirectly)
+<code>proto.h</code>.
+<br> <img src="proto-inc.gif"><p>
+<p>
+<table width="100%"><tr><td class="navigate"><a href="index.html" accesskey="C" id="contents">Contents</a> </td><td align="right" class="navigate"><a href="./fileq.html" accesskey="P" id="previous">&laquo;&nbsp;Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./name.html" accesskey="N" id="next">Next (C Namespaces)&nbsp;&raquo;</a></td></tr></table></p>
+
+
+<hr /> <p class="footer">
+<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en"><img align="left" alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a>
+&nbsp;Last change: Friday, September 19, 2008 8:16 pm
+<br />
+&nbsp;Unless otherwise expressly stated, all original material on this page
+created by Diomidis Spinellis is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en">Creative Commons Attribution-Share Alike 3.0 Greece License</a>.
+</p>
+</body>
+</html>

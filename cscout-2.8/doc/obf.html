@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<title>Obfuscation Back-end</title>
+
+<meta name="Generator" content="$Id: thread.pl 1.63 2008/10/15 08:16:27 dds Exp $" />
+<meta name="Author" content="Diomidis Spinellis" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:dds@aueb.gr" />
+<link rel="ToC" href="index.html" />
+<link rev="Subdocument" href="index.html" />
+<link rel="previous" href="./access.html" />
+<link rel="next" href="./sql.html" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- LS-START --><script language="vbscript">
+sub document_onKeyDown()
+   keypressed = window.event.keyCode
+   select case keypressed
+     case 78 'ALT-B
+        document.all("next").click
+     case 80 'ALT-P
+        document.all("previous").click
+     case 67 'ALT-C
+        document.all("contents").click
+   end select
+end sub
+</script><!-- LS-END -->
+</head>
+<body>
+<h1>Obfuscation Back-end</h1>
+The supported version of <em>CScout</em> can convert a workspace into
+an obfuscated version.
+The obfuscated version of the workspace can be distributed instead
+of the original C source, and can be compiled on different processor
+architectures and operating systems,
+hindering however the code's reverse engineering and modification.
+<p />
+Each source code file is obfuscated by
+<ul>
+<li> Giving meaningless names to all identifiers: macros, arguments, ordinary identifiers, structure tags, structure members, and labels.</li>
+<li> Removing comments.</li>
+<li> Removing extraneous whitespace.</li>
+</ul>
+<p />
+Before running <em>CScout</em> to obfuscate, make a complete backup copy of
+your source code files, and store them in a secure place;
+preferably off-line.
+Once the source code files are obfuscated and overwritten, there is no
+way to get back their original contents.
+<p />
+To obfuscate the workspace, first ensure that <em>CScout</em> can correctly
+process the complete set of its source code files.
+Use the "unprocessed lines" metric of each file to verify that no
+parts of a file are left unprocessed;
+unprocessed regions will not be obfuscated.
+You can easily increase the coverage of <em>CScout</em>'s processing by
+including in the workspace multiple projects with different defined
+directives.
+<p />
+Also ensure that all your project's files are considered writable, and no
+files outside your project (for example system headers) are considered writable.
+This will allow <em>CScout</em> to rename your identifier names, but
+keep the names of library-defined identifiers (for example <code>printf</code>)
+unchanged.
+<p />
+Finally, run <em>CScout</em> with the switch <code>-o</code>.
+For each writable workspace file <em>CScout</em> will create a file ending
+in <code>.obf</code> that will contain the obfuscated version of its
+contents.
+The files are not overwritten, providing you with another countermeasure
+against accidentally destroying them.
+To overwrite the original source with the obfuscated one,
+use the following Unix command:
+<div class="code">
+<font face="monospace">
+find . -name '*.obf' |<br>
+sed 's/\\/\//g;s/\(.*\)\.obf$/mv &quot;\1.obf&quot; &quot;\1&quot;/' |<br>
+sh<br>
+</font>
+</div>
+You can then compile the obfuscated version of your project,
+to verify the obfuscation's results.
+<p>
+<table width="100%"><tr><td class="navigate"><a href="index.html" accesskey="C" id="contents">Contents</a> </td><td align="right" class="navigate"><a href="./access.html" accesskey="P" id="previous">&laquo;&nbsp;Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./sql.html" accesskey="N" id="next">Next (SQL Back-end)&nbsp;&raquo;</a></td></tr></table></p>
+
+
+<hr /> <p class="footer">
+<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en"><img align="left" alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a>
+&nbsp;Last change: Monday, May 16, 2005 8:51 am
+<br />
+&nbsp;Unless otherwise expressly stated, all original material on this page
+created by Diomidis Spinellis is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en">Creative Commons Attribution-Share Alike 3.0 Greece License</a>.
+</p>
+</body>
+</html>

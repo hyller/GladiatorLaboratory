@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<title>Hand-Editing</title>
+
+<meta name="Generator" content="$Id: thread.pl 1.63 2008/10/15 08:16:27 dds Exp $" />
+<meta name="Author" content="Diomidis Spinellis" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:dds@aueb.gr" />
+<link rel="ToC" href="index.html" />
+<link rev="Subdocument" href="index.html" />
+<link rel="previous" href="./op.html" />
+<link rel="next" href="./cvs.html" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- LS-START --><script language="vbscript">
+sub document_onKeyDown()
+   keypressed = window.event.keyCode
+   select case keypressed
+     case 78 'ALT-B
+        document.all("next").click
+     case 80 'ALT-P
+        document.all("previous").click
+     case 67 'ALT-C
+        document.all("contents").click
+   end select
+end sub
+</script><!-- LS-END -->
+</head>
+<body>
+<h1>Hand-Editing</h1>
+Some file and identifier listings provide an option to edit the file by
+hand.
+Such an operation is useful when CScout has identified a function as unused, and
+one therefore wishes to remove the complete function body.
+The <em>edit</em> link invokes an external editor,
+where possible with an argument that will move the edit point near the point
+of the corresponding identifier.
+The argument is specified as a regular expression.
+This has the advantage that the location will work
+even when the file length changes,
+but the disadvantage is imprecise and can also result in spurious matches.
+<p />
+The automatic global identifier replacement and the hand-editing of
+files are mutualy exclusive operations.
+Once either of the two is performed the other ceases to be available.
+This is done to protect the integrity of the underlying source code.
+Furthermore, all CScout's operations, such as queries and source code listings,
+are always performed on a snapshot of the source code taken just before a
+file is edited by hand.
+<p>
+<table width="100%"><tr><td class="navigate"><a href="index.html" accesskey="C" id="contents">Contents</a> </td><td align="right" class="navigate"><a href="./op.html" accesskey="P" id="previous">&laquo;&nbsp;Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./cvs.html" accesskey="N" id="next">Next (Interfacing with Version Management Systems)&nbsp;&raquo;</a></td></tr></table></p>
+
+
+<hr /> <p class="footer">
+<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en"><img align="left" alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a>
+&nbsp;Last change: Thursday, May 1, 2008 6:47 pm
+<br />
+&nbsp;Unless otherwise expressly stated, all original material on this page
+created by Diomidis Spinellis is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en">Creative Commons Attribution-Share Alike 3.0 Greece License</a>.
+</p>
+</body>
+</html>

@@ -1,0 +1,35 @@
+/*
+ * (C) Copyright 2001-2006 Diomidis Spinellis.
+ *
+ * Standard definitions read when starting up
+ * Windows/Microsoft C version
+ *
+ * $Id: defs.h 1.9 2002/09/05 16:51:23 dds Exp $
+ */
+
+#define __DATE__  "Jan 01 1970"
+#define __TIME__ "12:34:56"
+#define __FILE__ "UNKNOWN.c"
+#define __LINE__ 1
+
+// Not defined unless /Za is specified on the invocation of cl
+// #define __STDC__ 1
+#define _MSC_VER 8000
+#define _WIN32 1
+#define _M_IX86 1
+
+#define __cdecl
+#define _cdecl
+#define __stdcall
+#define _stdcall
+#define __inline
+#define _inline
+#define __asm _asm
+#define __int64 long long
+#define __declspec(x) volatile
+#define _declspec(x)
+
+/* To make it appear as a read-only identifier */
+int main();
+/* To avoid unused include file warnings */
+static void _cscout_dummy1(void) { _cscout_dummy1(); }

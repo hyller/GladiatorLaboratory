@@ -1,0 +1,102 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<title>Workflow</title>
+
+<meta name="Generator" content="$Id: thread.pl 1.63 2008/10/15 08:16:27 dds Exp $" />
+<meta name="Author" content="Diomidis Spinellis" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:dds@aueb.gr" />
+<link rel="ToC" href="index.html" />
+<link rev="Subdocument" href="index.html" />
+<link rel="previous" href="./setup.html" />
+<link rel="next" href="./wsp.html" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- LS-START --><script language="vbscript">
+sub document_onKeyDown()
+   keypressed = window.event.keyCode
+   select case keypressed
+     case 78 'ALT-B
+        document.all("next").click
+     case 80 'ALT-P
+        document.all("previous").click
+     case 67 'ALT-C
+        document.all("contents").click
+   end select
+end sub
+</script><!-- LS-END -->
+</head>
+<body>
+<h1>Workflow</h1>
+The following diagram illustrates the data flow when working with
+<em>CScout</em>.
+<br /><img src="flow.gif" alt="Data flow in a CScout project" /><br />
+The thick-lined objects depict active processes;
+the thin-lined objects depict data.
+<em>CScout</em> will analyze and process C source code under the directions
+of a processing script.
+After some user interactions through a web browser <em>CScout</em> can
+write out the modified source code.
+The supported version of <em>CScout</em> can also convert the C source code
+into an SQL script that can be further analyzed and processesed through
+an RDBMS.
+<p />
+There are three ways to generate the processing script:
+<ol>
+<li> <a href="wsp.html">Through a workspace definition file</a>, processed by the workspace compiler <em>cswc</em>.</li>
+<li> <a href="csmake.html">By having the <em>csmake</em> command monitor the build process</a>.  </li>
+<li> <a href="pragma.html">By tailoring a project's build process</a> to generate a processing script.  </li>
+</ol>
+Each method has different advantages and disadvantages.
+Therefore, you should probably select the method that better suits your needs,
+and not bother with the others.
+<p />
+Workspace definition files offer by far the most readable and transparent
+way to setup a <em>CScout</em> workspace.
+They are declarative and express exactly the operations that <em>CScout</em>
+will perform.
+On the other hand, they can be difficult to specify for an existing large
+project and they must be kept in sync with the project's build process.
+<p />
+Running your <em>make</em> process under the <em>csmake</em> command is a
+very easy way to generate a <em>CScout</em> processing script.
+This method however only works if the essentials of your make process
+aren't too contrived.
+<em>csmake</em> can handle builds implemented through the Unix-related
+<em>make</em>,
+<em>gcc</em>, <em>ld</em>, <em>ar</em>, and <em>mv</em> commands.
+It has been successfuly tested on the Linux and FreeBSD kernels and the Apache
+web server.
+If <em>csmake</em> can deal with your project, you will be up and running
+in minutes; if not, you will only have lost those few minutes.
+Another advantage of the <em>csmake</em> method
+is that <em>csmake</em> will obtain from
+the compiler the predefined macros and the include file path.
+As a result you often don't have to tailor the files
+<code>cscout_incs.h</code> and <code>cscout_defs.h</code>
+to match you environment;
+you can directly use the supplied file <code>cscout_defs.GENERIC_GCC</code>.
+<p>
+Tailoring your project's build process to generate a <em>CScout</em>
+processing script is a final possibility.
+Here you gain maximum flexibility and integration with the project
+build system at the expense of having to modify the project's
+build procedure.
+If the project is relatively large and the build procedure is under your
+control, this may be an option worth investigating.
+<p>
+<table width="100%"><tr><td class="navigate"><a href="index.html" accesskey="C" id="contents">Contents</a> </td><td align="right" class="navigate"><a href="./setup.html" accesskey="P" id="previous">&laquo;&nbsp;Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./wsp.html" accesskey="N" id="next">Next (Defining Workspaces)&nbsp;&raquo;</a></td></tr></table></p>
+
+
+<hr /> <p class="footer">
+<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en"><img align="left" alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a>
+&nbsp;Last change: Sunday, August 19, 2007 5:15 pm
+<br />
+&nbsp;Unless otherwise expressly stated, all original material on this page
+created by Diomidis Spinellis is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en">Creative Commons Attribution-Share Alike 3.0 Greece License</a>.
+</p>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<title>Examples of SQL Queries</title>
+
+<meta name="Generator" content="$Id: thread.pl 1.63 2008/10/15 08:16:27 dds Exp $" />
+<meta name="Author" content="Diomidis Spinellis" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:dds@aueb.gr" />
+<link rel="ToC" href="index.html" />
+<link rev="Subdocument" href="index.html" />
+<link rel="previous" href="./dbschema.html" />
+<link rel="next" href="./metrics.html" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- LS-START --><script language="vbscript">
+sub document_onKeyDown()
+   keypressed = window.event.keyCode
+   select case keypressed
+     case 78 'ALT-B
+        document.all("next").click
+     case 80 'ALT-P
+        document.all("previous").click
+     case 67 'ALT-C
+        document.all("contents").click
+   end select
+end sub
+</script><!-- LS-END -->
+</head>
+<body>
+<h1>Examples of SQL Queries</h1>
+Once data has been uploaded onto a SQL database it can be queried in a
+number of different ways.
+Here are some example queries.
+Note that some queries may not run on a particular relational database
+engine.
+<p />
+
+Find identifiers of a given type (typedefs, in this case):
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>select</b></font>&nbsp;name <font color="#6a5acd">from</font><br>
+ids left join tokens <font color="#6a5acd">on</font>&nbsp;ids.eid = tokens.eid<br>
+<font color="#6a5acd">where</font>&nbsp;ids.typedef = <font color="#6a5acd">true</font><br>
+</font>
+</div>
+<p />
+
+Number of different files that use a given identifier:
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>select</b></font>&nbsp;name, count(*) <font color="#6a5acd">as</font>&nbsp;cf <font color="#6a5acd">from</font>&nbsp;(<br>
+&nbsp;<font color="#804040"><b>select</b></font>&nbsp;fid, tokens.eid, count(*) <font color="#6a5acd">as</font>&nbsp;c <font color="#6a5acd">from</font><br>
+&nbsp;tokens<br>
+&nbsp;<font color="#6a5acd">group</font>&nbsp;<font color="#6a5acd">by</font><br>
+&nbsp;eid, fid) <font color="#6a5acd">as</font>&nbsp;cl inner join ids <font color="#6a5acd">on</font><br>
+cl.eid = ids.eid<br>
+<font color="#6a5acd">group</font>&nbsp;<font color="#6a5acd">by</font>&nbsp;ids.eid, ids.name<br>
+<font color="#6a5acd">order</font>&nbsp;<font color="#6a5acd">by</font>&nbsp;cf <font color="#6a5acd">desc</font>;<br>
+</font>
+</div>
+<p />
+
+Number of times an identifier occurs in a single file:
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>SELECT</b></font>&nbsp;IDS.NAME <font color="#6a5acd">AS</font>&nbsp;INAME, FILES.NAME <font color="#6a5acd">AS</font>&nbsp;FNAME, COUNT(*) <font color="#6a5acd">AS</font>&nbsp;C <font color="#6a5acd">FROM</font>&nbsp;TOKENS<br>
+INNER JOIN IDS <font color="#6a5acd">ON</font><br>
+IDS.EID = TOKENS.EID<br>
+INNER JOIN FILES <font color="#6a5acd">ON</font><br>
+TOKENS.FID = FILES.FID<br>
+<font color="#6a5acd">GROUP</font>&nbsp;<font color="#6a5acd">BY</font>&nbsp;IDS.EID, TOKENS.FID<br>
+<font color="#6a5acd">ORDER</font>&nbsp;<font color="#6a5acd">BY</font>&nbsp;C <font color="#6a5acd">DESC</font>;<br>
+</font>
+</div>
+<p />
+
+Number of times an identifier occurs in the workspace:
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>select</b></font>&nbsp;name, count(*) <font color="#6a5acd">as</font>&nbsp;c <font color="#6a5acd">from</font>&nbsp;tokens<br>
+inner join ids <font color="#6a5acd">on</font><br>
+ids.eid = tokens.eid<br>
+<font color="#6a5acd">group</font>&nbsp;<font color="#6a5acd">by</font>&nbsp;eid<br>
+<font color="#6a5acd">order</font>&nbsp;<font color="#6a5acd">by</font>&nbsp;c <font color="#6a5acd">desc</font><br>
+</font>
+</div>
+<p />
+
+
+Reconstitute the file with fid = 4:
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>select</b></font>&nbsp;s <font color="#6a5acd">from</font><br>
+(<font color="#804040"><b>select</b></font>&nbsp;name <font color="#6a5acd">as</font>&nbsp;s, foffset&nbsp;&nbsp;<font color="#6a5acd">from</font>&nbsp;ids inner join tokens <font color="#6a5acd">on</font><br>
+ids.eid = tokens.eid <font color="#6a5acd">where</font>&nbsp;fid = <font color="#ff00ff">4</font><br>
+<font color="#804040"><b>union</b></font>&nbsp;<font color="#804040"><b>select</b></font>&nbsp;code <font color="#6a5acd">as</font>&nbsp;s, foffset <font color="#6a5acd">from</font>&nbsp;rest <font color="#6a5acd">where</font>&nbsp;fid = <font color="#ff00ff">4</font><br>
+<font color="#804040"><b>union</b></font>&nbsp;<font color="#804040"><b>select</b></font>&nbsp;<font color="#804040"><b>comment</b></font>&nbsp;<font color="#6a5acd">as</font>&nbsp;s, foffset <font color="#6a5acd">from</font>&nbsp;comments <font color="#6a5acd">where</font>&nbsp;fid = <font color="#ff00ff">4</font><br>
+<font color="#804040"><b>union</b></font>&nbsp;<font color="#804040"><b>select</b></font>&nbsp;string <font color="#6a5acd">as</font>&nbsp;s, foffset <font color="#6a5acd">from</font>&nbsp;strings <font color="#6a5acd">where</font>&nbsp;fid = <font color="#ff00ff">4</font><br>
+)<br>
+<font color="#6a5acd">order</font>&nbsp;<font color="#6a5acd">by</font>&nbsp;foffset<br>
+</font>
+</div>
+The result will have newlines in the wrong places.
+Piping the output through a shell script
+like the following can fix this problem.
+<div class="code">
+<font face="monospace">
+sed <font color="#6a5acd">-e</font>&nbsp;<font color="#804040"><b>'</b></font><font color="#ff00ff">/^[0-9][0-9]* rows/d</font><font color="#804040"><b>'</b></font>&nbsp;<font color="#804040"><b>|</b></font><br>
+tr <font color="#6a5acd">-d</font>&nbsp;<font color="#804040"><b>'</b></font><font color="#ff00ff">\n</font><font color="#804040"><b>'</b></font>&nbsp;<font color="#804040"><b>|</b></font><br>
+sed <font color="#804040"><b>'</b></font><font color="#ff00ff">s/</font><font color="#6a5acd">\\</font><font color="#ff00ff">u0000d/\</font><br>
+<font color="#ff00ff">/g</font><font color="#804040"><b>'</b></font><br>
+</font>
+</div>
+The above script will massage the HSQLDB output removing the trailing
+<code>N rows</code> line and all existing newlines,
+and changing the embedded <code>\u0000d</code> sequences into newlines.
+For the Windows line-end conventions the same script would be:
+<div class="code">
+<font face="monospace">
+sed <font color="#6a5acd">-e</font>&nbsp;<font color="#804040"><b>'</b></font><font color="#ff00ff">/^[0-9][0-9]* rows/d</font><font color="#804040"><b>'</b></font>&nbsp;<font color="#804040"><b>|</b></font><br>
+tr <font color="#6a5acd">-d</font>&nbsp;<font color="#804040"><b>'</b></font><font color="#ff00ff">\n\r</font><font color="#804040"><b>'</b></font>&nbsp;<font color="#804040"><b>|</b></font><br>
+sed <font color="#804040"><b>'</b></font><font color="#ff00ff">s/</font><font color="#6a5acd">\\</font><font color="#ff00ff">u0000d</font><font color="#6a5acd">\\</font><font color="#ff00ff">u0000a/\</font><br>
+<font color="#ff00ff">/g</font><font color="#804040"><b>'</b></font><br>
+</font>
+</div>
+<p />
+
+Show the projects each identifier belongs to:
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>select</b></font>&nbsp;IDS.NAME, PROJECTS.NAME <font color="#6a5acd">from</font>&nbsp;IDS<br>
+INNER JOIN IDPROJ <font color="#6a5acd">ON</font>&nbsp;IDS.EID = IDPROJ.EID<br>
+INNER JOIN PROJECTS <font color="#6a5acd">ON</font>&nbsp;IDPROJ.PID = PROJECTS.PID<br>
+<font color="#6a5acd">ORDER</font>&nbsp;<font color="#6a5acd">BY</font>&nbsp;IDS.NAME;<br>
+</font>
+</div>
+<p />
+
+Show the included files required by other files for each
+compilation unit and project.
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>select</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;projects.name <font color="#6a5acd">as</font>&nbsp;projname,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cufiles.name <font color="#6a5acd">as</font>&nbsp;cuname,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;basefiles.name <font color="#6a5acd">as</font>&nbsp;basename,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;definefiles.name <font color="#6a5acd">as</font>&nbsp;defname<br>
+<font color="#6a5acd">from</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;definers inner join projects <font color="#6a5acd">on</font>&nbsp;definers.pid = projects.pid<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inner join files <font color="#6a5acd">as</font>&nbsp;cufiles <font color="#6a5acd">on</font>&nbsp;definers.cuid=cufiles.fid<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inner join&nbsp;&nbsp;files <font color="#6a5acd">as</font>&nbsp;basefiles <font color="#6a5acd">on</font>&nbsp;definers.basefileid=basefiles.fid<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inner join files <font color="#6a5acd">as</font>&nbsp;definefiles <font color="#6a5acd">on</font>&nbsp;definers.definerid = definefiles.fid;<br>
+</font>
+</div>
+<p />
+
+Speed-up processing:
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>create</b></font>&nbsp;<font color="#6a5acd">index</font>&nbsp;teid <font color="#6a5acd">on</font>&nbsp;tokens(eid)<br>
+<font color="#804040"><b>create</b></font>&nbsp;<font color="#6a5acd">index</font>&nbsp;tfid <font color="#6a5acd">on</font>&nbsp;tokens(fid)<br>
+</font>
+</div>
+<p />
+
+Obtain identifiers common between files participating in a define/use relationship:
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>SELECT</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;tokensa.eid,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;min(ids.name) <font color="#6a5acd">as</font>&nbsp;identifier,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;min(filesb.name) <font color="#6a5acd">as</font>&nbsp;defined,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;min(filesa.name) <font color="#6a5acd">as</font>&nbsp;used<br>
+<font color="#6a5acd">FROM</font>&nbsp;definers<br>
+INNER JOIN tokens <font color="#6a5acd">AS</font>&nbsp;tokensa <font color="#6a5acd">ON</font>&nbsp;definers.basefileid = tokensa.fid<br>
+INNER JOIN tokens <font color="#6a5acd">AS</font>&nbsp;tokensb <font color="#6a5acd">ON</font>&nbsp;definers.definerid = tokensb.fid<br>
+INNER JOIN ids <font color="#6a5acd">ON</font>&nbsp;ids.eid = tokensa.eid<br>
+INNER JOIN files <font color="#6a5acd">as</font>&nbsp;filesa <font color="#6a5acd">ON</font>&nbsp;tokensa.fid = filesa.fid<br>
+INNER JOIN files <font color="#6a5acd">as</font>&nbsp;filesb <font color="#6a5acd">ON</font>&nbsp;tokensb.fid = filesb.fid<br>
+<font color="#6a5acd">WHERE</font>&nbsp;tokensa.eid = tokensb.eid<br>
+<font color="#6a5acd">GROUP</font>&nbsp;<font color="#6a5acd">BY</font>&nbsp;tokensa.eid, definerid, basefileid<br>
+<font color="#6a5acd">ORDER</font>&nbsp;<font color="#6a5acd">BY</font>&nbsp;defined, identifier<br>
+</font>
+</div>
+<p />
+
+Create a function and macro call graph:
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>SELECT</b></font>&nbsp;source.name <font color="#6a5acd">AS</font>&nbsp;CallingFunction, dest.name <font color="#6a5acd">AS</font>&nbsp;CalledFunction<br>
+<font color="#6a5acd">FROM</font>&nbsp;fcalls<br>
+INNER JOIN functions <font color="#6a5acd">AS</font>&nbsp;source <font color="#6a5acd">ON</font>&nbsp;fcalls.sourceid = source.id<br>
+INNER JOIN functions <font color="#6a5acd">AS</font>&nbsp;dest <font color="#6a5acd">ON</font>&nbsp;fcalls.destid = dest.id<br>
+</font>
+</div>
+<p />
+
+<p>
+<table width="100%"><tr><td class="navigate"><a href="index.html" accesskey="C" id="contents">Contents</a> </td><td align="right" class="navigate"><a href="./dbschema.html" accesskey="P" id="previous">&laquo;&nbsp;Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./metrics.html" accesskey="N" id="next">Next (Details of the Collected Metrics)&nbsp;&raquo;</a></td></tr></table></p>
+
+
+<hr /> <p class="footer">
+<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en"><img align="left" alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a>
+&nbsp;Last change: Thursday, June 15, 2006 4:55 pm
+<br />
+&nbsp;Unless otherwise expressly stated, all original material on this page
+created by Diomidis Spinellis is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en">Creative Commons Attribution-Share Alike 3.0 Greece License</a>.
+</p>
+</body>
+</html>

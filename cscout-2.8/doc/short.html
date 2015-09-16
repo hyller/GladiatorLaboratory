@@ -1,0 +1,224 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<title>Shortcomings</title>
+
+<meta name="Generator" content="$Id: thread.pl 1.63 2008/10/15 08:16:27 dds Exp $" />
+<meta name="Author" content="Diomidis Spinellis" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:dds@aueb.gr" />
+<link rel="ToC" href="index.html" />
+<link rev="Subdocument" href="index.html" />
+<link rel="previous" href="./metrics.html" />
+<link rel="next" href="./error.html" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- LS-START --><script language="vbscript">
+sub document_onKeyDown()
+   keypressed = window.event.keyCode
+   select case keypressed
+     case 78 'ALT-B
+        document.all("next").click
+     case 80 'ALT-P
+        document.all("previous").click
+     case 67 'ALT-C
+        document.all("contents").click
+   end select
+end sub
+</script><!-- LS-END -->
+</head>
+<body>
+<h1>Shortcomings</h1>
+The nature of the C language and its preprocessor can result in pathological 
+cases that can confuse the <em>CScout</em> analysis and substitution engine.
+In all cases the confusion only results in erroneous analysis or 
+substitutions of the particular identifiers and will not affect other
+parts of the code.
+In some cases you can even slightly modify your workspace definition
+or code to ensure <em>CScout</em> works as you intend.
+The following cases are the most important in recognising and substituting
+identifiers:
+
+<ol>
+<li> Conditional compilation<p>
+Some programs have parts of them compiled under conditional preprocessor
+directives.
+Consider the following example:
+
+<div class="code">
+<font face="monospace">
+<font color="#a020f0">#ifdef unix</font><br>
+<font color="#a020f0">#include </font><font color="#ff00ff">&lt;unistd.h&gt;</font><br>
+<font color="#a020f0">#define erase_file(x) unlink(x)</font><br>
+<font color="#a020f0">#endif</font><br>
+<br>
+<font color="#a020f0">#ifdef WIN32</font><br>
+<font color="#a020f0">#include </font><font color="#ff00ff">&lt;windows.h&gt;</font><br>
+<font color="#a020f0">#define erase_file(x) DeleteFile(x)</font><br>
+<font color="#a020f0">#endif</font><br>
+<br>
+main(<font color="#2e8b57"><b>int</b></font>&nbsp;argc, <font color="#2e8b57"><b>char</b></font>&nbsp;*argv[])<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;erase_file(argv[<font color="#ff00ff">1</font>]);<br>
+}<br>
+</font>
+</div>
+
+As humans we can understand that <code>erase_file</code> occurs three times
+within the file.
+However, because <em>CScout</em> preprocesses the file following the 
+C preprocessor semantics, it will typically match only two instances.
+In some cases you can get around this problem by defining macros that will
+ensure that all code inside conditional directives gets processed.
+In other cases this will result in errors (e.g. a duplicate macro definition
+in the above example).
+In such cases you can include in your workspace the same project multiple
+times, each time with a different set of defined macros.
+<pre>
+workspace example {
+	project idtest {
+		define DEBUG 1
+		define TEST 1
+		file idtest.c util.c
+	}
+	project idtest2 {
+		define NDEBUG 1
+		define PRODUCTION
+		file idtest.c util.c
+}
+</pre>
+<li> Partial coverage of macro use <p>
+Consider the following example:
+<div class="code">
+<font face="monospace">
+<font color="#2e8b57"><b>struct</b></font>&nbsp;s1 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#2e8b57"><b>int</b></font>&nbsp;id;<br>
+} a;<br>
+<br>
+<font color="#2e8b57"><b>struct</b></font>&nbsp;s2 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#2e8b57"><b>char</b></font>&nbsp;id;<br>
+} b;<br>
+<br>
+<font color="#2e8b57"><b>struct</b></font>&nbsp;s3 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#2e8b57"><b>double</b></font>&nbsp;id;<br>
+} c;<br>
+<br>
+<font color="#a020f0">#define getid(x) ((x)-&gt;id)</font><br>
+<br>
+main()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(<font color="#ff00ff">&quot;</font><font color="#6a5acd">%d</font><font color="#ff00ff">&nbsp;</font><font color="#6a5acd">%c</font><font color="#ff00ff">&quot;</font>, getid(a), getid(b));<br>
+}<br>
+</font>
+</div>
+In the above example, changing an <code>id</code> instance should
+also change the other three instances.
+However, <em>CScout</em> will not associate the member of 
+<code>s3</code> with the identifier appearing in the <code>getid</code>
+macro or the 
+<code>s1</code> or <code>s2</code> structures, 
+because there is no <code>getid</code> macro invocation to link them together.
+If e.g. <code>id</code> is replaced with <code>val</code>
+the program will compile and function correctly,
+but when one tries to access the <code>c</code> struture's member
+in the future using <code>getid</code> an error will result.
+
+<div class="code">
+<font face="monospace">
+<font color="#2e8b57"><b>struct</b></font>&nbsp;s1 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#2e8b57"><b>int</b></font>&nbsp;val;<br>
+} a;<br>
+<br>
+<font color="#2e8b57"><b>struct</b></font>&nbsp;s2 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#2e8b57"><b>char</b></font>&nbsp;val;<br>
+} b;<br>
+<br>
+<font color="#2e8b57"><b>struct</b></font>&nbsp;s3 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#2e8b57"><b>double</b></font>&nbsp;id;<br>
+} c;<br>
+<br>
+<font color="#a020f0">#define getid(x) ((x)-&gt;val)</font><br>
+<br>
+main()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(<font color="#ff00ff">&quot;</font><font color="#6a5acd">%d</font><font color="#ff00ff">&nbsp;</font><font color="#6a5acd">%c</font><font color="#ff00ff">&quot;</font>, getid(a), getid(b));&nbsp;&nbsp; <font color="#0000ff">/*</font><font color="#0000ff">&nbsp;OK </font><font color="#0000ff">*/</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(<font color="#ff00ff">&quot; </font><font color="#6a5acd">%g</font><font color="#ff00ff">&quot;</font>, getid(c));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000ff">/*</font><font color="#0000ff">&nbsp;New statement: error </font><font color="#0000ff">*/</font><br>
+}<br>
+</font>
+</div>
+
+To avoid this (rare) problem you can introduce dummy macro invocations
+of the form:
+
+<div class="code">
+<font face="monospace">
+<font color="#a020f0">#ifdef CSCOUT</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<font color="#2e8b57"><b>void</b></font>)getid(d)<br>
+<font color="#a020f0">#endif</font><br>
+</font>
+</div>
+
+
+<li> Undefined macros<p>
+We employ a heuristic classifying all instances of an undefined macro
+as being the same identifier.
+Thus in the following sequence <code>foo</code> will match all
+three macro instances:
+<div class="code">
+<font face="monospace">
+<font color="#a020f0">#undef foo</font><br>
+<br>
+<font color="#a020f0">#ifdef foo</font><br>
+<font color="#a020f0">#endif</font><br>
+<br>
+<font color="#a020f0">#ifdef foo</font><br>
+<font color="#a020f0">#endif</font><br>
+<br>
+<font color="#a020f0">#define foo </font><font color="#ff00ff">1</font><br>
+</font>
+</div>
+In most cases this is what you want, but there may be cases where the macro
+appears in different files and with a different meaning.
+In such cases the undefined instances of the macro will erroneously
+match the defined instance.
+</ol>
+<p>
+In addition, the analysis of functions can be confused by the following
+situations.
+<ol>
+<li> Functions getting called through function pointers will not
+appear in the call graphs.
+This is a common limitation of static call analysis.</li>
+<li> Function-like macros called from inside function bodies that
+were generated by macro expansion will not be registered as calls.</li>
+<li> Non-function like macros that expand into function calls will
+not appear in the call graph; the corresponding functions will appear
+to be called by the function containing the macro.</li>
+</ol>
+<p>
+Finally, because function argument refactoring works at a higher level
+thann simple identifiers, the following limitations hold.
+<ol>
+<li>When a function call's arguments macro-expand into unballanced brackets
+or into multiple function arguments the replacement can misbehave.</li>
+<li>When there is not a one-to-one correspondence between a
+function's name and its associated identifier
+(i.e. when the function's name is generated through macro-token concatenation)
+the function argument refactoring is not offered as an option.
+</li>
+</ol>
+<p>
+<table width="100%"><tr><td class="navigate"><a href="index.html" accesskey="C" id="contents">Contents</a> </td><td align="right" class="navigate"><a href="./metrics.html" accesskey="P" id="previous">&laquo;&nbsp;Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./error.html" accesskey="N" id="next">Next (Error Messages)&nbsp;&raquo;</a></td></tr></table></p>
+
+
+<hr /> <p class="footer">
+<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en"><img align="left" alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a>
+&nbsp;Last change: Wednesday, January 28, 2009 11:55 am
+<br />
+&nbsp;Unless otherwise expressly stated, all original material on this page
+created by Diomidis Spinellis is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en">Creative Commons Attribution-Share Alike 3.0 Greece License</a>.
+</p>
+</body>
+</html>

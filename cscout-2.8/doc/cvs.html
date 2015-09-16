@@ -1,0 +1,71 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<title>Interfacing with Version Management Systems</title>
+
+<meta name="Generator" content="$Id: thread.pl 1.63 2008/10/15 08:16:27 dds Exp $" />
+<meta name="Author" content="Diomidis Spinellis" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:dds@aueb.gr" />
+<link rel="ToC" href="index.html" />
+<link rev="Subdocument" href="index.html" />
+<link rel="previous" href="./hedit.html" />
+<link rel="next" href="./ext.html" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- LS-START --><script language="vbscript">
+sub document_onKeyDown()
+   keypressed = window.event.keyCode
+   select case keypressed
+     case 78 'ALT-B
+        document.all("next").click
+     case 80 'ALT-P
+        document.all("previous").click
+     case 67 'ALT-C
+        document.all("contents").click
+   end select
+end sub
+</script><!-- LS-END -->
+</head>
+<body>
+<h1>Interfacing with Version Management Systems</h1>
+When the files <em>CScout</em> will modify are under revision control
+you may want to check them out for editing before doing the identifier
+substitutions, and then check them in again.
+<em>CScout</em> provides hooks for this operation.
+Before a file is modified <em>CScout</em> will try to
+execute the command <code>cscout_checkout</code>;
+after the file is modified <em>CScout</em> will try to execute the
+command <code>cscout_checkin</code>.
+Both commands will receive as their argument the full path name of the
+respective file.
+If commands with such names are in your path, they will be executed
+performing whatever action you require.
+<p>
+As an example, for a file under RCS control the following commands could be
+used:
+<h2>cscout_checkout</h2>
+<pre>
+#!/bin/sh
+co -l $1
+</pre>
+<h2>cscout_checkin</h2>
+<pre>
+#!/bin/sh
+co -m 'CScout identifier name refactoring' -u $1
+</pre>
+<p>
+<table width="100%"><tr><td class="navigate"><a href="index.html" accesskey="C" id="contents">Contents</a> </td><td align="right" class="navigate"><a href="./hedit.html" accesskey="P" id="previous">&laquo;&nbsp;Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./ext.html" accesskey="N" id="next">Next (Language Extensions)&nbsp;&raquo;</a></td></tr></table></p>
+
+
+<hr /> <p class="footer">
+<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en"><img align="left" alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a>
+&nbsp;Last change: Monday, August 9, 2004 2:38 pm
+<br />
+&nbsp;Unless otherwise expressly stated, all original material on this page
+created by Diomidis Spinellis is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en">Creative Commons Attribution-Share Alike 3.0 Greece License</a>.
+</p>
+</body>
+</html>

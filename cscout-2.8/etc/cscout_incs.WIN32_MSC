@@ -1,0 +1,15 @@
+/* 
+ * (C) Copyright 2001-2003 Diomidis Spinellis.
+ *
+ * Define include paths
+ * Windows/Microsoft C version
+ *
+ * $Id: incs.h 1.1 2002/09/05 16:43:58 dds Exp $
+ */
+
+#pragma includepath "c:/program files/devstudio/vc/include"
+#pragma includepath "c:/program files/devstudio/vc/atl/include"
+#pragma includepath "c:/program files/devstudio/vc/mfc/include"
+#pragma ro_prefix "c:/program files/devstudio/vc/"
+/* To avoid unused include file warnings */
+static void _cscout_dummy2(void) { _cscout_dummy2(); }

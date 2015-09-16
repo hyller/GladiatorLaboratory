@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<title>SQL Back-end</title>
+
+<meta name="Generator" content="$Id: thread.pl 1.63 2008/10/15 08:16:27 dds Exp $" />
+<meta name="Author" content="Diomidis Spinellis" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:dds@aueb.gr" />
+<link rel="ToC" href="index.html" />
+<link rev="Subdocument" href="index.html" />
+<link rel="previous" href="./obf.html" />
+<link rel="next" href="./dbschema.html" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- LS-START --><script language="vbscript">
+sub document_onKeyDown()
+   keypressed = window.event.keyCode
+   select case keypressed
+     case 78 'ALT-B
+        document.all("next").click
+     case 80 'ALT-P
+        document.all("previous").click
+     case 67 'ALT-C
+        document.all("contents").click
+   end select
+end sub
+</script><!-- LS-END -->
+</head>
+<body>
+<h1>SQL Back-end</h1>
+The supported version of <em>CScout</em> can dump the relationships of
+an entire workspace in the form of a SQL script.
+This can then be uploaded into a relational database for further
+querying and processing.
+<p />
+To generate the SQL script simply
+run <em>CScout</em> with the switch <code>-s</code> <i>dialect</i>,
+where the argument specifies the SQL dialect (for example,
+mysql, or postgresql).
+The SQL script will appear in <em>CScout</em>'s standard output,
+allowing you to directly pipe the results into the database's
+client.
+For example, say the database you would want to create for your project
+was called <code>myproj</code>.<br />
+For MySQL you would write:
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>(</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#804040"><b>echo</b></font><font color="#ff00ff">&nbsp;</font><font color="#804040"><b>&quot;</b></font><font color="#ff00ff">create database myproj; use myproj ;</font><font color="#804040"><b>&quot;</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cscout -s mysql myproj.cs<br>
+<font color="#804040"><b>)</b></font>&nbsp;<font color="#804040"><b>|</b></font>&nbsp;mysql<br>
+</font>
+</div>
+For PostgreSQL you would write:
+<div class="code">
+<font face="monospace">
+createdb <font color="#6a5acd">-U</font>&nbsp;username myproj<br>
+cscout <font color="#6a5acd">-s</font>&nbsp;postgres myproj.cs <font color="#804040"><b>|</b></font>&nbsp;psql <font color="#6a5acd">-U</font>&nbsp;username myproj<br>
+</font>
+</div>
+For HSQLDB you would write:
+<div class="code">
+<font face="monospace">
+cscout <font color="#6a5acd">-s</font>&nbsp;hsqldb myproj.cs <font color="#804040"><b>|</b></font><br>
+java <font color="#6a5acd">-classpath</font>&nbsp;<font color="#a020f0">$HSQLDBHOME</font>/lib/hsqldb/hsqldb.jar org.hsqldb.util.SqlTool <font color="#6a5acd">--rcfile</font>&nbsp;<font color="#a020f0">$HSQLDBHOME</font>/lib/hsqldb/sqltool.rc mem -<br>
+</font>
+</div>
+
+The direct piping allows you to avoid the overhead of creating an
+intermediate file, which can be very large.
+<p>
+<table width="100%"><tr><td class="navigate"><a href="index.html" accesskey="C" id="contents">Contents</a> </td><td align="right" class="navigate"><a href="./obf.html" accesskey="P" id="previous">&laquo;&nbsp;Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./dbschema.html" accesskey="N" id="next">Next (Schema of the Generated Database)&nbsp;&raquo;</a></td></tr></table></p>
+
+
+<hr /> <p class="footer">
+<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en"><img align="left" alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a>
+&nbsp;Last change: Friday, September 22, 2006 5:17 pm
+<br />
+&nbsp;Unless otherwise expressly stated, all original material on this page
+created by Diomidis Spinellis is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en">Creative Commons Attribution-Share Alike 3.0 Greece License</a>.
+</p>
+</body>
+</html>

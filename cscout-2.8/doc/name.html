@@ -1,0 +1,168 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<title>C Namespaces</title>
+
+<meta name="Generator" content="$Id: thread.pl 1.63 2008/10/15 08:16:27 dds Exp $" />
+<meta name="Author" content="Diomidis Spinellis" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:dds@aueb.gr" />
+<link rel="ToC" href="index.html" />
+<link rev="Subdocument" href="index.html" />
+<link rel="previous" href="./ig.html" />
+<link rel="next" href="./id.html" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- LS-START --><script language="vbscript">
+sub document_onKeyDown()
+   keypressed = window.event.keyCode
+   select case keypressed
+     case 78 'ALT-B
+        document.all("next").click
+     case 80 'ALT-P
+        document.all("previous").click
+     case 67 'ALT-C
+        document.all("contents").click
+   end select
+end sub
+</script><!-- LS-END -->
+</head>
+<body>
+<h1>C Namespaces</h1>
+To understand identifier queries it is best to refresh our notion of the
+C namespaces.
+The main way we normally reuse identifier names in C programs is
+through scoping: an identifier within a given scope
+such as a block or declared as <code>static</code> within a file
+will not interfere with identifiers outside that scope.
+Thus, the following example will print 3 and not 7.
+<div class="code">
+<font face="monospace">
+<font color="#2e8b57"><b>int</b></font>&nbsp;i = <font color="#ff00ff">3</font>;<br>
+<br>
+foo()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#2e8b57"><b>int</b></font>&nbsp;i = <font color="#ff00ff">7</font>;<br>
+}<br>
+<br>
+main()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foo();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(<font color="#ff00ff">&quot;</font><font color="#6a5acd">%d</font><font color="#6a5acd">\n</font><font color="#ff00ff">&quot;</font>, i);<br>
+}<br>
+</font>
+</div>
+<em>CScout</em> analyzes and stores each identifier's scope performing
+substitutions accordingly.
+<p>
+
+In addition, C also partitions a program's identifiers into four
+<em>namespaces</em>.
+Identifiers in one namespace, are also considered different from
+identifiers in another.
+The four namespaces are:
+<ol>
+<li> Tags for a <code>struct/union/enum</code>
+<li> Members of <code>struct/union</code>
+(actually a separate namespace is assigned
+to each <code>struct/union</code>)
+<li> Labels
+<li> Ordinary identifiers (termed <em>objects</em> in the C standard)
+</ol>
+Thus in the following example all <code>id</code> identifier instances are
+different:
+<div class="code">
+<font face="monospace">
+<font color="#0000ff">/*</font><font color="#0000ff">&nbsp;structure tag </font><font color="#0000ff">*/</font><br>
+<font color="#2e8b57"><b>struct</b></font>&nbsp;id {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#2e8b57"><b>int</b></font>&nbsp;id;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">/*</font><font color="#0000ff">&nbsp;structure member </font><font color="#0000ff">*/</font><br>
+};<br>
+<br>
+<font color="#0000ff">/*</font><font color="#0000ff">&nbsp;Different structure </font><font color="#0000ff">*/</font><br>
+<font color="#2e8b57"><b>struct</b></font>&nbsp;id2 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#2e8b57"><b>char</b></font>&nbsp;id;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000ff">/*</font><font color="#0000ff">&nbsp;structure member </font><font color="#0000ff">*/</font><br>
+};<br>
+<br>
+<font color="#0000ff">/*</font><font color="#0000ff">&nbsp;ordinary identifier </font><font color="#0000ff">*/</font><br>
+id()<br>
+{<br>
+<font color="#804040"><b>id</b></font>:&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000ff">/*</font><font color="#0000ff">&nbsp;label </font><font color="#0000ff">*/</font><br>
+}<br>
+</font>
+</div>
+Furthermore, macro names and the names of macro formal arguments also
+live in separate namespaces within the preprocessor.
+<p>
+Normally when you want to locate or change an identifier name,
+you only consider identifiers in the same scope and namespace.
+Sometimes however,
+a C preprocessor macro can semantically unite identifiers
+living in different namespaces, so that changes in one of them
+should be propagated to the others.
+The most common case involves macros that access structure members.
+<div class="code">
+<font face="monospace">
+<font color="#2e8b57"><b>struct</b></font>&nbsp;s1 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#2e8b57"><b>int</b></font>&nbsp;id;<br>
+} a;<br>
+<br>
+<font color="#2e8b57"><b>struct</b></font>&nbsp;s2 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#2e8b57"><b>char</b></font>&nbsp;id;<br>
+} b;<br>
+<br>
+<font color="#a020f0">#define getid(x) ((x)-&gt;id)</font><br>
+<br>
+main()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(<font color="#ff00ff">&quot;</font><font color="#6a5acd">%d</font><font color="#ff00ff">&nbsp;</font><font color="#6a5acd">%c</font><font color="#ff00ff">&quot;</font>, getid(a), getid(b));<br>
+}<br>
+</font>
+</div>
+In the above example, a name change in any of the <code>id</code>
+instances should be propagated to all others for the program to
+retain its original meaning.
+<em>CScout</em> understands such changes and will propagate any changes
+you specify accordingly.
+<p>
+Finally, the C preprocessor's token concatenation feature can result
+in identifiers that should be treated for substitution purposes in
+separate parts.
+Consider the following example:
+
+<div class="code">
+<font face="monospace">
+<font color="#2e8b57"><b>int</b></font>&nbsp;xleft, xright;<br>
+<font color="#2e8b57"><b>int</b></font>&nbsp;ytop, ybottom;<br>
+<br>
+<font color="#a020f0">#define coord(a, b) (a ## b)</font><br>
+<br>
+main()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(<font color="#ff00ff">&quot;</font><font color="#6a5acd">%d</font><font color="#ff00ff">&nbsp;</font><font color="#6a5acd">%d</font><font color="#ff00ff">&nbsp;</font><font color="#6a5acd">%d</font><font color="#ff00ff">&nbsp;</font><font color="#6a5acd">%d</font><font color="#6a5acd">\n</font><font color="#ff00ff">&quot;</font>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;coord(x, left),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;coord(x, right),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;coord(y, top),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;coord(y, bottom));<br>
+}<br>
+</font>
+</div>
+In the above example, replacing <code>x</code> in one of the <code>coord</code>
+macro invocations should replace the <code>x</code> part in the
+<code>xleft</code> and <code>xright</code> variables.
+Again <em>CScout</em> will recognize and correctly handle this code.
+
+<p>
+<table width="100%"><tr><td class="navigate"><a href="index.html" accesskey="C" id="contents">Contents</a> </td><td align="right" class="navigate"><a href="./ig.html" accesskey="P" id="previous">&laquo;&nbsp;Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./id.html" accesskey="N" id="next">Next (Identifier Elements)&nbsp;&raquo;</a></td></tr></table></p>
+
+
+<hr /> <p class="footer">
+<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en"><img align="left" alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a>
+&nbsp;Last change: Monday, August 2, 2004 1:21 pm
+<br />
+&nbsp;Unless otherwise expressly stated, all original material on this page
+created by Diomidis Spinellis is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en">Creative Commons Attribution-Share Alike 3.0 Greece License</a>.
+</p>
+</body>
+</html>

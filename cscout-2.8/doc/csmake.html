@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<title>Automated Generation of the Processing Script</title>
+
+<meta name="Generator" content="$Id: thread.pl 1.63 2008/10/15 08:16:27 dds Exp $" />
+<meta name="Author" content="Diomidis Spinellis" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:dds@aueb.gr" />
+<link rel="ToC" href="index.html" />
+<link rev="Subdocument" href="index.html" />
+<link rel="previous" href="./wspd.html" />
+<link rel="next" href="./pragma.html" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- LS-START --><script language="vbscript">
+sub document_onKeyDown()
+   keypressed = window.event.keyCode
+   select case keypressed
+     case 78 'ALT-B
+        document.all("next").click
+     case 80 'ALT-P
+        document.all("previous").click
+     case 67 'ALT-C
+        document.all("contents").click
+   end select
+end sub
+</script><!-- LS-END -->
+</head>
+<body>
+<h1>Automated Generation of the Processing Script</h1>
+In <em>CScout</em> from version 2.2 and onward you can
+you can also use the supplied tool <em>csmake</em> to
+directly generate <em>CScout</em> processing scripts by monitoring a project's
+make-based build process.
+For this to work your project's build must (probably) be based
+on a Unix or Unix-like system, and use <em>make</em> and <em>gcc</em>.
+The make process can also invoke <em>ld</em>, <em>ar</em>, and <em>mv</em>.
+Recursive <em>make</em> invocations among different directories are
+also supported.
+<p />
+The way to use <em>csmake</em> is fairly simple.
+You first arrange for performing a full build, for example by running
+<div class="code">
+<font face="monospace">
+make clean<br>
+</font>
+</div>
+Then, instead of running <code>make</code> on the project's top-level
+directory you run <code>csmake</code>.
+When the build process has finished, <em>csmake</em> will leave in
+the directory where you started it a <em>CScout</em> processing script
+named <code>make.cs</code>.
+<p />
+<em>csmake</em> has been used out-of-the-box to run <em>CScout</em> on
+the Linux kernel version 2.6.11.4 and the Apache httpd version 2.2.3.
+It has also been used to process the FreeBSD 7-CURRENT kernel under
+its three Tier-1 architecture configurations by cross-compiling each
+configuration separately and merging the resulting <em>CScout</em>
+processing scripts.
+This is the shell script that did the job.
+<div class="code">
+<font face="monospace">
+<font color="#804040"><b>for</b></font>&nbsp;a <font color="#804040"><b>in</b></font>&nbsp;amd64 i386 sparc64<br>
+<font color="#804040"><b>do</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#804040"><b>(</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#804040"><b>cd</b></font>&nbsp;sys/<font color="#a020f0">$a</font>/conf/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make LINT<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;config LINT<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#804040"><b>)</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#804040"><b>export</b></font>&nbsp;<font color="#008080">MAKEOBJDIRPREFIX</font>=/home/dds/src/fbsd-head/obj/<font color="#a020f0">$a</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;csmake buildkernel <font color="#008080">TARGET_ARCH</font>=<font color="#a020f0">$a</font>&nbsp;&nbsp;<font color="#008080">KERNCONF</font>=LINT<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mv make.cs make.<font color="#a020f0">$a</font>.cs<br>
+<font color="#804040"><b>done</b></font><br>
+cat make.*.cs <font color="#804040"><b>&gt;</b></font>all.cs<br>
+sed <font color="#6a5acd">-n</font>&nbsp;<font color="#804040"><b>'</b></font><font color="#ff00ff">s/#pragma process &quot;</font><font color="#6a5acd">\(</font><font color="#ff00ff">.*hack.c</font><font color="#6a5acd">\)</font><font color="#ff00ff">&quot;/\1/p</font><font color="#804040"><b>'</b></font>&nbsp;all.cs <font color="#804040"><b>|</b></font>&nbsp;xargs touch<br>
+cscout all.cs<br>
+</font>
+</div>
+<p>
+<table width="100%"><tr><td class="navigate"><a href="index.html" accesskey="C" id="contents">Contents</a> </td><td align="right" class="navigate"><a href="./wspd.html" accesskey="P" id="previous">&laquo;&nbsp;Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./pragma.html" accesskey="N" id="next">Next (Tailoring the Build Process to Generate the Processing Script)&nbsp;&raquo;</a></td></tr></table></p>
+
+
+<hr /> <p class="footer">
+<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en"><img align="left" alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a>
+&nbsp;Last change: Monday, October 2, 2006 2:12 pm
+<br />
+&nbsp;Unless otherwise expressly stated, all original material on this page
+created by Diomidis Spinellis is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/gr/deed.en">Creative Commons Attribution-Share Alike 3.0 Greece License</a>.
+</p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+问题：
+=========
+
+用IAR6.3打开IAR6.0 的工程，编译的时候出现提示错误：
+extern uint32_t __get_PSP(void); 已经在C:\Program Files\IAR Systems\Embedded Workbench 6.0\arm\inc\c\intrinsics.h文件中定义
+extern uint32_t __get_MSP(void);已经在C:\Program Files\IAR Systems\Embedded Workbench 6.0\arm\inc\c\intrinsics.h文件中定义
+。。。。。。
+
+这是由于IAR6.3已经加入了CM3的内核定义，就不需要ST库中的core_cm3.c 和 core_cm3.h 这两个文件的定义了
+
+解决办法一
+=========
+直接删除core_cm3.c 和 core_cm3.h 这两个文件，然后在工程设置里面勾选 "Use CMSIS"
+
+
+解决方法二：
+=========
+把core_cm3.h里面这句给注释掉，然后加上一句
+#if defined (__ICCARM__)
+//#include <intrinsics.h> /* IAR Intrinsics */
+__intrinsic void __DSB(void);
+#endif
+完全没有任何警告和错误。
+我的是IAR6.3+STM32F10x_StdPeriph_Driver V3.5.0
+转自：http://www.amobbs.com/thread-5172279-1-1.html
+
+
+解决方法三：
+=========
+直接用IAR6.3安装文件下的core_cm3.h

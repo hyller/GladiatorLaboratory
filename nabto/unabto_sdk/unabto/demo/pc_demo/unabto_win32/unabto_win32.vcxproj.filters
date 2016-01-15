@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\src\unabto_application.c" />
+    <ClCompile Include="..\src\unabto_main.c" />
+    <ClCompile Include="..\..\..\src\modules\network\winsock\unabto_winsock.c">
+      <Filter>modules\network\winsock</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\modules\log\win32\unabto_log_header_win32.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\platforms\win32\unabto_platform.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\platforms\unabto_printf_logger.c">
+      <Filter>platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\modules\cli\gopt\gopt.c">
+      <Filter>modules\cli\gopt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\modules\cli\gopt\unabto_args_gopt.c">
+      <Filter>modules\cli\gopt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\modules\crypto\generic\unabto_aes.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_aes128_sha256.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\modules\crypto\generic\unabto_aes_cbc.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_app_adapter.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_attach.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_common_main.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\util\unabto_buffer.c">
+      <Filter>unabto\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\modules\crypto\generic\unabto_sha256.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_stream.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_stream_event.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\util\unabto_queue.c">
+      <Filter>unabto\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_prf.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_connection.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_context.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_crypto.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_message.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_packet.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_packet_util.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\modules\crypto\generic\unabto_hmac_sha256.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\modules\random\dummy\unabto_random_dummy.c">
+      <Filter>modules\random\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\modules\diagnostics\unabto_diag.c">
+      <Filter>modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\modules\network\winsock\unabto_winsock_dns.c">
+      <Filter>modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_buffers.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\unabto\unabto_query_rw.c">
+      <Filter>unabto</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\unabto_config.h" />
+    <ClInclude Include="..\..\..\src\modules\network\winsock\unabto_winsock.h">
+      <Filter>modules\network\winsock</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\platforms\win32\unabto_logging_win32.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\platforms\unabto_common_types.h">
+      <Filter>platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\platforms\unabto_printf_logger.h">
+      <Filter>platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\modules\cli\unabto_args.h">
+      <Filter>modules\cli</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\modules\cli\gopt\gopt.h">
+      <Filter>modules\cli\gopt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_app_adapter.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\modules\crypto\generic\unabto_aes.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_aes128_sha256.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_aes_cbc.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_app.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_attach.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_common_main.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\util\unabto_buffer.h">
+      <Filter>unabto\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_util.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\modules\crypto\generic\unabto_sha256.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_stream.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_stream_event.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\util\unabto_queue.h">
+      <Filter>unabto\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_protocol_exceptions.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_prf.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_protocol_defines.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_config_defaults.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_crypto.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_config_derived.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_connection.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_context.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_env_base.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_external_environment.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_environment.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_packet_util.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_main_contexts.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_memory.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_message.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_packet.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_logging.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_hmac_sha256.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\platforms\win32\unabto_platform_types.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\platforms\win32\unabto_platform.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_buffers.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\unabto\unabto_query_rw.h">
+      <Filter>unabto</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="platforms">
+      <UniqueIdentifier>{1777f499-30ad-4464-9229-a6b7325c4743}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\win32">
+      <UniqueIdentifier>{a759f380-ac22-4de2-b538-3bbf61fec77e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules">
+      <UniqueIdentifier>{f4265ce6-27e0-4519-8eab-8ec2ee7309ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\network">
+      <UniqueIdentifier>{3e089171-4620-4361-b21c-1a0137daf0e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\network\winsock">
+      <UniqueIdentifier>{aabc8b8f-183e-4421-9f7c-c9a766bef839}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\cli">
+      <UniqueIdentifier>{91db635f-726a-48dd-881c-d6e69e950177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\cli\gopt">
+      <UniqueIdentifier>{0633439a-24d2-45a7-bdfd-f1cfeba3a733}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="unabto">
+      <UniqueIdentifier>{79747b37-a0ec-4d6d-8c0b-f0f3f8bf58c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="unabto\util">
+      <UniqueIdentifier>{270eecd1-4557-44ae-9a56-bf2f0bc36df3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\random">
+      <UniqueIdentifier>{b38dfb18-1187-441f-ac58-8795a3d2f4a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\random\dummy">
+      <UniqueIdentifier>{f3c02337-2006-4804-b6aa-49670b121e91}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

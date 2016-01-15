@@ -1,0 +1,7 @@
+\{
+    "request": \{
+    \},
+    "response": \{
+        "led_state": ${led_state}
+    \}
+\}

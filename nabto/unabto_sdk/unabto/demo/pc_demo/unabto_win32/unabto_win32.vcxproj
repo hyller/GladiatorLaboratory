@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{615FBAD5-B754-499C-8B3D-4131769198EE}</ProjectGuid>
+    <RootNamespace>unabto_win32</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../src;../src;../../../src/platforms/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../src;../src;../../../src/platforms/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../../../src;../src;../../../src/platforms/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../../../src;../src;../../../src/platforms/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\modules\cli\gopt\gopt.c" />
+    <ClCompile Include="..\..\..\src\modules\cli\gopt\unabto_args_gopt.c" />
+    <ClCompile Include="..\..\..\src\modules\crypto\generic\unabto_aes.c" />
+    <ClCompile Include="..\..\..\src\modules\crypto\generic\unabto_aes_cbc.c" />
+    <ClCompile Include="..\..\..\src\modules\crypto\generic\unabto_hmac_sha256.c" />
+    <ClCompile Include="..\..\..\src\modules\crypto\generic\unabto_sha256.c" />
+    <ClCompile Include="..\..\..\src\modules\diagnostics\unabto_diag.c" />
+    <ClCompile Include="..\..\..\src\modules\network\winsock\unabto_winsock.c" />
+    <ClCompile Include="..\..\..\src\modules\network\winsock\unabto_winsock_dns.c" />
+    <ClCompile Include="..\..\..\src\modules\random\dummy\unabto_random_dummy.c" />
+    <ClCompile Include="..\..\..\src\platforms\unabto_printf_logger.c" />
+    <ClCompile Include="..\..\..\src\modules\log\win32\unabto_log_header_win32.c" />
+    <ClCompile Include="..\..\..\src\platforms\win32\unabto_platform.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_aes128_sha256.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_app_adapter.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_attach.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_buffers.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_common_main.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_connection.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_context.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_crypto.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_message.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_packet.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_packet_util.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_prf.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_query_rw.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_stream.c" />
+    <ClCompile Include="..\..\..\src\unabto\unabto_stream_event.c" />
+    <ClCompile Include="..\..\..\src\unabto\util\unabto_buffer.c" />
+    <ClCompile Include="..\..\..\src\unabto\util\unabto_queue.c" />
+    <ClCompile Include="..\src\unabto_application.c" />
+    <ClCompile Include="..\src\unabto_main.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\modules\cli\gopt\gopt.h" />
+    <ClInclude Include="..\..\..\src\modules\cli\unabto_args.h" />
+    <ClInclude Include="..\..\..\src\modules\crypto\generic\unabto_aes.h" />
+    <ClInclude Include="..\..\..\src\modules\crypto\generic\unabto_sha256.h" />
+    <ClInclude Include="..\..\..\src\modules\network\winsock\unabto_winsock.h" />
+    <ClInclude Include="..\..\..\src\platforms\unabto_common_types.h" />
+    <ClInclude Include="..\..\..\src\platforms\unabto_printf_logger.h" />
+    <ClInclude Include="..\..\..\src\platforms\win32\unabto_logging_win32.h" />
+    <ClInclude Include="..\..\..\src\platforms\win32\unabto_platform.h" />
+    <ClInclude Include="..\..\..\src\platforms\win32\unabto_platform_types.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_aes128_sha256.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_aes_cbc.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_app.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_app_adapter.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_attach.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_buffers.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_common_main.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_config_defaults.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_config_derived.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_connection.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_context.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_crypto.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_environment.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_env_base.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_external_environment.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_hmac_sha256.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_logging.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_main_contexts.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_memory.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_message.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_packet.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_packet_util.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_prf.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_protocol_defines.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_protocol_exceptions.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_query_rw.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_stream.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_stream_event.h" />
+    <ClInclude Include="..\..\..\src\unabto\unabto_util.h" />
+    <ClInclude Include="..\..\..\src\unabto\util\unabto_buffer.h" />
+    <ClInclude Include="..\..\..\src\unabto\util\unabto_queue.h" />
+    <ClInclude Include="..\src\unabto_config.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

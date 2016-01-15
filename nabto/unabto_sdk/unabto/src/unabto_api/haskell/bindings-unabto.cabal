@@ -1,0 +1,25 @@
+name:          bindings-unabto
+version:       1.0
+cabal-version: >= 1.6
+build-type:    Simple
+category:      FFI
+
+library
+  hs-source-dirs: src
+  Include-dirs: .. ../.. ../../../../src/app/unabto/unabto_api
+  extra-libraries: 
+    unabto_api
+  build-depends:
+    base >= 3 && < 5,
+    bytestring,
+    bindings-DSL >= 1.0.15 && < 1.1,
+    stm,
+    unix,
+    binary    
+  exposed-modules:
+    UNabto
+    UNabtoSync
+    UNabtoInterface
+    UNabtoHelper
+    TChanHelper
+

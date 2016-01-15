@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>ADKRenesasG14/Debug</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>321</Column0><Column1>16</Column1><Column2>27</Column2><Column3>0</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        <PreferedWindows>
+          
+          
+          
+          
+        <Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>767</ColumnWidth1><ColumnWidth2>596</ColumnWidth2><ColumnWidth3>50</ColumnWidth3></Build>
+      <Find-in-Files>
+        <PreferedWindows>
+          
+          
+          
+          
+        <Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows>
+        
+        
+        
+      <ColumnWidth0>603</ColumnWidth0><ColumnWidth1>51</ColumnWidth1><ColumnWidth2>622</ColumnWidth2></Find-in-Files>
+    <TerminalIO/><Debug-Log><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Build</Factory></Window></Windows></PreferedWindows><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1085</ColumnWidth1></Debug-Log><SourceBrowser/></Static>
+    <Windows>
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-5694-22965</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>ADKRenesasG14</ExpandedNode></NodeDict></Session>
+          </Tab>
+        <Tab><Identity>TabID-5967-8517</Identity><TabName>Source Browser</TabName><Factory>SourceBrowser</Factory><Session><TypeFilter>2147483647</TypeFilter><FileFilter>1</FileFilter></Session></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-25678-4289</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-21788-18298</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\sensors\Temperature.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\sensors\Temperature.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Apps\App_ProgramMode.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\platforms\unabto_app\unabto_platform.h</Filename><XPos>0</XPos><YPos>6</YPos><SelStart>283</SelStart><SelEnd>283</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Apps\NVSettings.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Apps\Apps.h</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Apps\App_Startup.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\system\console.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\system\console.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\system\EEPROM.h</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\system\GainSpan_IO.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\system\mstimer.h</Filename><XPos>0</XPos><YPos>9</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\system\platform.h</Filename><XPos>0</XPos><YPos>9</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_app.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>921</SelStart><SelEnd>921</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Apps\App_Common.c</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_include_platform.h</Filename><XPos>0</XPos><YPos>6</YPos><SelStart>1839</SelStart><SelEnd>1839</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\sensors\Accelerometer.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_connection.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>348</SelStart><SelEnd>348</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_attach.h</Filename><XPos>0</XPos><YPos>24</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_common_main.c</Filename><XPos>0</XPos><YPos>27</YPos><SelStart>2</SelStart><SelEnd>2</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_env_base.h</Filename><XPos>0</XPos><YPos>45</YPos><SelStart>2</SelStart><SelEnd>2</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\util\list_malloc.c</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>287</SelStart><SelEnd>298</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\util\list.c</Filename><XPos>0</XPos><YPos>33</YPos><SelStart>907</SelStart><SelEnd>907</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_external_environment.h</Filename><XPos>0</XPos><YPos>48</YPos><SelStart>2075</SelStart><SelEnd>2075</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\platforms\renesas_rl78\unabto_external_environment_renesas_rl78.c</Filename><XPos>0</XPos><YPos>9</YPos><SelStart>333</SelStart><SelEnd>333</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\platforms\renesas_rl78\unabto_logging_renesas_rl78.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>116</SelStart><SelEnd>116</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_stream_event.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>55</SelStart><SelEnd>55</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_stream.c</Filename><XPos>0</XPos><YPos>15</YPos><SelStart>390</SelStart><SelEnd>390</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\util\unabto_queue.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>36</SelStart><SelEnd>36</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_prf.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>59</SelStart><SelEnd>59</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_packet.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>60</SelStart><SelEnd>60</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_attach.c</Filename><XPos>0</XPos><YPos>338</YPos><SelStart>12332</SelStart><SelEnd>12332</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CmdLib\AtCmdLib.c</Filename><XPos>0</XPos><YPos>5122</YPos><SelStart>185622</SelStart><SelEnd>185622</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_connection.c</Filename><XPos>0</XPos><YPos>33</YPos><SelStart>214</SelStart><SelEnd>214</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto.h</Filename><XPos>0</XPos><YPos>9</YPos><SelStart>17</SelStart><SelEnd>17</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\platforms\renesas_rl78\unabto_env_base_renesas_rl78.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>492</SelStart><SelEnd>492</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\sensors\LightSensor.c</Filename><XPos>0</XPos><YPos>43</YPos><SelStart>2078</SelStart><SelEnd>2078</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\sensors\LightSensor.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>604</SelStart><SelEnd>604</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\system\Switch.c</Filename><XPos>0</XPos><YPos>35</YPos><SelStart>1451</SelStart><SelEnd>1451</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Apps\NVSettings.c</Filename><XPos>0</XPos><YPos>55</YPos><SelStart>2176</SelStart><SelEnd>2176</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_packet_util.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>412</SelStart><SelEnd>412</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CmdLib\AtCmdLib.h</Filename><XPos>0</XPos><YPos>103</YPos><SelStart>3866</SelStart><SelEnd>3866</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\src\unabto\unabto_crypto.c</Filename><XPos>0</XPos><YPos>708</YPos><SelStart>24117</SelStart><SelEnd>24117</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\drv\Glyph\lcd.c</Filename><XPos>0</XPos><YPos>106</YPos><SelStart>5718</SelStart><SelEnd>5718</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\drv\UART0.c</Filename><XPos>0</XPos><YPos>77</YPos><SelStart>3811</SelStart><SelEnd>3811</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Apps\App_Connect.c</Filename><XPos>0</XPos><YPos>75</YPos><SelStart>4998</SelStart><SelEnd>4998</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Apps\unabto_application.c</Filename><XPos>0</XPos><YPos>78</YPos><SelStart>212</SelStart><SelEnd>212</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Apps\unabto_config.h</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>1040</SelStart><SelEnd>1040</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Apps\App_Nabto.c</Filename><XPos>0</XPos><YPos>30</YPos><SelStart>1178</SelStart><SelEnd>1178</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\main.c</Filename><XPos>0</XPos><YPos>86</YPos><SelStart>3363</SelStart><SelEnd>3363</SelEnd></Tab><ActiveTab>49</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-011cf780><key>iaridepm.enu1</key></Toolbar-011cf780></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2><Row3><Sizes/></Row3><Row4><Sizes/></Row4><Row5><Sizes/></Row5><Row6><Sizes/></Row6><Row7><Sizes/></Row7><Row8><Sizes/></Row8></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>858</Bottom><Right>384</Right><x>-2</x><y>-2</y><xscreen>0</xscreen><yscreen>0</yscreen><sizeHorzCX>0</sizeHorzCX><sizeHorzCY>0</sizeHorzCY><sizeVertCX>201042</sizeVertCX><sizeVertCY>742660</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>255</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>257</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>221934</sizeHorzCY><sizeVertCX>0</sizeVertCX><sizeVertCY>0</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

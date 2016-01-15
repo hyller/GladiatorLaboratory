@@ -1,0 +1,41 @@
+cmake_minimum_required(VERSION 2.8)
+project(stream_echo)
+
+include(${CMAKE_CURRENT_SOURCE_DIR}/../../build/cmake/unabto_project.cmake)
+
+set(src
+  ${unabto_src}
+  ${unabto_gopt_src}
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/stream_echo.c
+)
+
+set(src_tick
+  ${src}
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/main_tick.c
+)
+
+set(src_select
+  ${src}
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/main_select.c
+)
+
+add_definitions(
+  ${unabto_definitions}
+)
+
+include_directories(
+  ${unabto_include_directories}
+  ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+add_executable(${PROJECT_NAME}_tick ${src_tick})
+add_executable(${PROJECT_NAME} ${src_select})
+
+target_link_libraries(${PROJECT_NAME}_tick ${unabto_link_libraries})
+target_link_libraries(${PROJECT_NAME} ${unabto_link_libraries})
+
+install( TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_tick
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib)
+

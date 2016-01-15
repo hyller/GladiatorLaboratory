@@ -1,0 +1,28 @@
+Copyright (C) 2008-2014 Nabto - All Rights Reserved.
+
+This package contains the following file structure:
+
+
+FILES.txt                   - this text.
+COPYRIGHT.txt               - copyright notice.
+DISCLAIMER.txt              - disclaimer notice.
+
+Nabto.Client.dll            - Assembly containing the .NET Nabto client API.
+Nabto.Utilities.dll         - .NET Nabto utilities.
+
+NabtoTunnel.exe             - Tunnel manager command line tool.
+NabtoTunnelManager.exe      - The tunnel manager.
+
+x64\nabto_client_api.dll    - 64-bit windows shared library containing the Client API.
+x64\libnabto_client_api.so  - 64-bit linux shared library containing the Client API.
+x86\nabto_client_api.dll    - 32-bit windows shared library containing the Client API.
+x86\libnabto_client_api.so  - 32-bit linux shared library containing the Client API.
+
+share\nabto\configuration\  - Configuration data for the Nabto web server.
+share\nabto\roots\          - Root certificates for the Nabto web server.
+share\nabto\users\          - User certificates for the Nabto web server.
+share\nabto\schemas\        - Schemas for the Nabto web server.
+share\nabto\skins\          - Different looks for different web pages.
+
+
+/EOF

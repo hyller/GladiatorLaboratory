@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<unabto_queries 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.nabto.com/unabto/query_model.xsd">
+
+  <query name="acceleration.json" description="Get acceleration data" id="1">
+    <request>
+    </request>
+    <response>
+      <parameter name="acc_x" type="uint16"/>
+      <parameter name="acc_y" type="uint16"/>
+      <parameter name="acc_z" type="uint16"/>
+    </response>
+  </query>
+  
+  <query name="temperature.json" description="Get temperature data" id="2">
+    <request>
+    </request>
+    <response>
+      <parameter name="temp" type="uint16"/>
+    </response>
+  </query>
+  
+  <query name="light_level.json" description="Get light level" id="3">
+    <request>
+    </request>
+    <response>
+      <parameter name="light" type="uint16"/>
+    </response>
+  </query>
+  
+  <query name="potentiometer.json" description="Get potentiometer data" id="4">
+    <request>
+    </request>
+    <response>
+      <parameter name="pot" type="uint32"/>
+    </response>
+  </query>
+  
+  <query name="button_status.json" description="Get button status" id="5">
+    <request>
+    </request>
+    <response>
+      <parameter name="button_1" type="uint8"/>
+      <parameter name="button_2" type="uint8"/>
+      <parameter name="button_3" type="uint8"/>
+    </response>
+  </query>
+  
+  <query name="sound_level.json" description="Get sound level" id="6">
+    <request>
+    </request>
+    <response>
+      <parameter name="sound" type="uint32"/>
+    </response>
+  </query>
+  
+  <query name="led.json" description="Set led state" id="7">
+    <request>
+      <parameter name="led_id" type="uint16"/>
+    </request>
+    <response>
+      <parameter name="led_state" type="uint16"/>
+    </response>
+  </query>
+
+</unabto_queries>

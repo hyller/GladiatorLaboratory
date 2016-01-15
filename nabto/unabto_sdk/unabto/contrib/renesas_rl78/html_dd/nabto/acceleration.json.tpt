@@ -1,0 +1,9 @@
+\{
+    "request": \{
+    \},
+    "response": \{
+        "acc_x": ${acc_x},
+        "acc_y": ${acc_y},
+        "acc_z": ${acc_z}
+    \}
+\}

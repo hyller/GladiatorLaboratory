@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+	<title>uNabto Renesas / Gainspan Demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="jquery/jquery.mobile-1.2.0.min.css"/>
+	<style>
+        @media only screen and (min-width: 865px)
+        {
+            .ui-page
+            {
+                width: 800px !important;
+                margin: 0 auto !important;
+                position: relative !important;
+            }
+        }
+    </style>
+	<script src="jquery/jquery-1.8.2.min.js"></script>
+	<script src="js/defaults.js"></script>
+	<script src="jquery/jquery.mobile-1.2.0.min.js"></script>
+	<script src="js/helper.js"></script>
+	<link rel="stylesheet" href="jqplot/jquery.jqplot.min.css"/>
+	<script src="jqplot/jquery.jqplot.min.js"></script>
+	<script src="jqplot/jqplot.canvasTextRenderer.min.js"></script>
+	<script src="jqplot/jqplot.canvasAxisLabelRenderer.min.js"></script>
+</head>
+
+<body>
+<!-- Frontpage -->
+<div data-role="page" id="frontpage">
+	<div data-role="header">
+		<a href="nabto://self/discover" data-role="button" data-icon="home">Discover</a>
+		<h1>uNabto</h1>
+	</div>
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true">
+			<li><a href="#acc-page">Acceleration</a></li>
+			<li><a href="#temp-page">Temperature</a></li>
+			<li><a href="#light-page">Light Level</a></li>
+			<li><a href="#pot-page">Potentiometer</a></li>
+			<li><a href="#button-page">Button Status</a></li>
+			<li><a href="#sound-page">Sound Level</a></li>
+			<li><a href="#led-page">Set LED</a></li>
+		</ul>
+		<p>Welcome to the uNabto Renesas and Gainspan demo.</p>
+		<div class="errors ui-body ui-body-e" style="display:none;"></div>
+	</div>
+	<div data-role="footer" class="ui-bar">
+		<div data-role="controlgroup" data-type="horizontal">
+			<a href="http://nabto.com" data-role="button" data-icon="star">Nabto.com</a>
+			<a href="http://renesas.com" data-role="button">Renesas</a>
+			<a href="http://gainspan.com" data-role="button">Gainspan</a>
+		</div>
+	</div>
+</div>
+
+<!-- Acceleration -->
+<div data-role="page" data-add-back-btn="true" id="acc-page">
+	<div data-role="header">
+		<h1>Acceleration</h1>
+	</div>
+	<div data-role="content">
+		<div id="acc_chart" style="width: 100%;"></div>
+		<div data-role="fieldcontain">	
+			<label for="acc_val">Update Interval [ms]:</label>
+			<input type="range" id="acc_val" value="1000" min="500" max="5000" data-highlight="true"/>
+		</div>
+		<label><input type="checkbox" checked="true" id="acc_auto"/>Auto Update</label>
+		<br/>
+		<div class="errors ui-body ui-body-e" style="display:none;"></div>
+	</div>
+</div>
+
+<!-- Temperature -->
+<div data-role="page" data-add-back-btn="true" id="temp-page">
+	<div data-role="header">
+		<h1>Temperature</h1>
+	</div>
+	<div data-role="content">
+		<div id="temp_chart" style="width: 100%;"></div>
+		<div data-role="fieldcontain">	
+			<label for="temp_val">Update Interval [ms]:</label>
+			<input type="range" id="temp_val" value="1000" min="500" max="5000" data-highlight="true"/>
+		</div>
+		<label><input type="checkbox" checked="true" id="temp_auto"/>Auto Update</label>
+		<br/>
+		<div class="errors ui-body ui-body-e" style="display:none;"></div>
+	</div>
+</div>
+
+<!-- Light level -->
+<div data-role="page" data-add-back-btn="true" id="light-page">
+	<div data-role="header">
+		<h1>Light Level</h1>
+	</div>
+	<div data-role="content">
+		<div id="light_chart" style="width: 100%;"></div>
+		<div data-role="fieldcontain">	
+			<label for="light_val">Update Interval [ms]:</label>
+			<input type="range" id="light_val" value="1000" min="500" max="5000" data-highlight="true"/>
+		</div>
+		<label><input type="checkbox" checked="true" id="light_auto"/>Auto Update</label>
+		<br/>
+		<div class="errors ui-body ui-body-e" style="display:none;"></div>
+	</div>
+</div>
+
+<!-- Potentiometer -->
+<div data-role="page" data-add-back-btn="true" id="pot-page">
+	<div data-role="header">
+		<h1>Potentiometer</h1>
+	</div>
+	<div data-role="content">
+		<div id="pot_chart" style="width: 100%;"></div>
+		<div data-role="fieldcontain">	
+			<label for="pot_val">Update Interval [ms]:</label>
+			<input type="range" id="pot_val" value="1000" min="500" max="5000" data-highlight="true"/>
+		</div>
+		<label><input type="checkbox" checked="true" id="pot_auto"/>Auto Update</label>
+		<br/>
+		<div class="errors ui-body ui-body-e" style="display:none;"></div>
+	</div>
+</div>
+
+<!-- Button status -->
+<div data-role="page" data-add-back-btn="true" id="button-page">
+	<div data-role="header">
+		<h1>Button Status</h1>
+	</div>
+	<div data-role="content">
+		<label><input type="checkbox" class="button_read" id="button1" />Read button 1 status</label>
+		<label><input type="checkbox" class="button_read" id="button2" />Read button 2 status</label>
+		<label><input type="checkbox" class="button_read" id="button3" />Read button 3 status</label>
+		<br/>
+    <p>Click on any of the buttons to update the onboard switch status.</p>
+    <br/>
+		<div class="errors ui-body ui-body-e" style="display:none;"></div>
+	</div>
+</div>
+
+<!-- Sound level -->
+<div data-role="page" data-add-back-btn="true" id="sound-page">
+	<div data-role="header">
+		<h1>Sound Level</h1>
+	</div>
+	<div data-role="content">
+		<div id="sound_chart" style="width: 100%;"></div>
+		<div data-role="fieldcontain">	
+			<label for="sound_val">Update Interval [ms]:</label>
+			<input type="range" id="sound_val" value="1000" min="500" max="5000" data-highlight="true"/>
+		</div>
+		<label><input type="checkbox" checked="true" id="sound_auto"/>Auto Update</label>
+		<br/>
+		<div class="errors ui-body ui-body-e" style="display:none;"></div>
+	</div>
+</div>
+
+<!-- Set led -->
+<div data-role="page" data-add-back-btn="true" id="led-page">
+	<div data-role="header">
+		<h1>Set LED</h1>
+	</div>
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true">
+			<li data-role="fieldcontain">
+				<h3>LED</h3>
+				<div class="ui-li-aside" style="margin-top: -2px;">
+					<select id="led_toggle" data-role="slider">
+					<option value="off">Off</option>
+					<option value="on">On</option>
+				</select>
+			</div>
+			</li>
+		</ul>
+		<br/>
+		<div class="errors ui-body ui-body-e" style="display:none;"></div>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nabto.Client</name>
+    </assembly>
+    <members>
+        <member name="T:Nabto.Client.AddressInUseException">
+            <summary>
+            The exception that is thrown when the specified email is already in use on the current portal.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.NabtoClientException">
+            <summary>
+            Represents general Nabto client API exceptions.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.NabtoClientException.#ctor(Nabto.Client.Interop.NabtoStatus,System.String)">
+            <summary>
+            Initializes a new instance of a NabtoClientException with the specified message and internal Nabto status code.
+            </summary>
+            <param name="status">The internal Nabto status message related to the exception.</param>
+            <param name="message">A message describing the exception.</param>
+        </member>
+        <member name="M:Nabto.Client.NabtoClientException.#ctor(Nabto.Client.Interop.NabtoStatus,System.String,System.Object[])">
+            <summary>
+            Initializes a new instance of a NabtoClientException with the specified message.
+            </summary>
+            <param name="status">The internal Nabto status message related to the exception.</param>
+            <param name="format">The format string for the message.</param>
+            <param name="arguments">The arguments for the message.</param>
+        </member>
+        <member name="M:Nabto.Client.NabtoClientException.CreateHResult(Nabto.Client.ErrorClass,System.Int32)">
+            <summary>
+            Creates a valid COM HResult that does not conflict with Microsofts predefined COM HResults (range 0x00000000-0x000001ff).
+            </summary>
+            <param name="errorClass"></param>
+            <param name="code"></param>
+            <returns>The HResult.</returns>
+        </member>
+        <member name="M:Nabto.Client.NabtoClientException.CreateHResult(Nabto.Client.Interop.NabtoStatus)">
+            <summary>
+            Creates an HResult from a NabtoStatus code.
+            </summary>
+            <param name="status">The NabtoStatus code to create an HResult from.</param>
+            <returns>The HResult.</returns>
+        </member>
+        <member name="T:Nabto.Client.ApiNotStartedException">
+            <summary>
+            The exception that is thrown when a method that expected the API to be in the started state was called but the API was not started.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.CertificateSigningException">
+            <summary>
+            The exception that is thrown when a portal is unable to sign a certificate.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.ClientApiOption">
+            <summary>
+            The valid options for configuring the client API.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.ClientApiOption.Language">
+            <summary>
+            Valid values are: "en" and "da".
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.ClientApiOption.BackupConfig">
+            <summary>
+            Valid values are: "yes" and "no".
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.ClientApiOption.ConfigFileName">
+            <summary>
+            Valid values are: any valid file name.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.ClientEnvironment">
+            <summary>
+            Provides information about the environment in which the Nabto client API is operating.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.ClientEnvironment.DefaultHomeDirectory">
+            <summary>
+            The default path to the Nabto client API home directory which contains HTML device drivers, logs etc.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.ClientEnvironment.HomeDirectory">
+            <summary>
+            The effective path to the Nabto client API home directory which contains HTML device drivers, logs etc.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.ConnectionType">
+            <summary>
+            Represents the underlying connection type.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.ConnectionType.Local">
+            <summary>
+            The stream is running on a local connection (no Internet).
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.ConnectionType.PeerToPeer">
+            <summary>
+            The stream is running on a direct connection (peer-to-peer).
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.ConnectionType.Relay">
+            <summary>
+            The stream is running on a fallback connection through the base-station.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.ConnectionType.Unknown">
+            <summary>
+            The stream is running on an unrecognized connection type.
+            This value indicates that the connection is lost, since we always know the underlying connection type if it exists.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.ConnectionType.RelayMicro">
+            <summary>
+            The stream is running on a connection that runs through a relay node on the Internet.
+            The device is capable of using TCP/IP and the connection runs directly from the device to the relay node to the client.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.ConnectToHostException">
+            <summary>
+            The exception that is thrown when a client is unable to establish a connection to device.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.DeviceConnection">
+            <summary>
+            Represents a connection to a device.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.FetchUrl(System.String,System.Boolean)">
+            <summary>
+            Fetch the specified resource from the device.
+            </summary>
+            <param name="url">The URL of the resource relative to the device.</param>
+            <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+            <returns>The data fetched from the device.</returns>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.FetchUrl(System.String,System.String@,System.Boolean)">
+            <summary>
+            Fetch the specified resource from the device and return the MIME type of the response.
+            </summary>
+            <param name="url">The URL of the resource relative to the device.</param>
+            <param name="mimeType">The MIME type of the reponse.</param>
+            <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+            <returns>The data fetched from the device.</returns>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.FetchUrlAsString(System.String,System.Boolean)">
+            <summary>
+            Fetch the specified resource from the device.
+            </summary>
+            <param name="url">The URL of the resource relative to the device.</param>
+            <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+            <returns>The data fetched from the device encoded as a string using the current DefaultEncoding.</returns>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.FetchUrlAsString(System.String,System.String@,System.Boolean)">
+            <summary>
+            Fetch the specified resource from the device and return the MIME type of the response.
+            </summary>
+            <param name="url">The URL of the resource relative to the device.</param>
+            <param name="mimeType">The MIME type of the reponse.</param>
+            <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+            <returns>The data fetched from the device encoded as a string using the current DefaultEncoding.</returns>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.CreateStream">
+            <summary>
+            Creates a new stream to the device.
+            </summary>
+            <returns>The newly created stream.</returns>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.CreateStream(Nabto.Client.Streaming.StreamService,System.String)">
+            <summary>
+            Creates a new stream to the device and initializes the specified service.
+            </summary>
+            <param name="service">The service to initialize.</param>
+            <param name="serviceParameters">Optional initialization parameters for the service.</param>
+            <returns>The newly created stream.</returns>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.CreateStream(System.String)">
+            <summary>
+            Creates a new stream to the device and initializes the specified service.
+            </summary>
+            <param name="serviceConfiguration">The service to initialize and any configuration parameters needed during initialization.</param>
+            <returns>The newly created stream.</returns>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.CreateTunnel(System.Int32,System.String,System.Int32)">
+            <summary>
+            Creates a tunnel to the specified device. 
+            </summary>
+            <param name="localPort">The local TCP port to listen on.</param>
+            <param name="remoteHost">The host the remote endpoint establishes a TCP connection to.</param>
+            <param name="remotePort">The TCP port to connect to on remoteHost.</param>
+            <returns>The newly created tunnel.</returns>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.Dispose">
+            <summary>
+            Disposes the device connection.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.Finalize">
+            <summary>
+            Finalizer.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.Dispose(System.Boolean)">
+            <summary>
+            Performs the actual disposing of the device connection and the underlying data structure.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Nabto.Client.DeviceConnection.ToString">
+            <summary>
+            Creates a string representing the DeviceConnection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Nabto.Client.FileSystemIOException">
+            <summary>
+            The exception that is thrown when the API was unable to read from or write to the file system.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.INabtoClient">
+            <summary>
+            The interface for the Nabto client API.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.Startup">
+            <summary>
+            Starts the client API.
+            Startup is performed automatically during normal usage and only needs to be called if <see cref="M:Nabto.Client.INabtoClient.Shutdown"/> has been called.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.Shutdown">
+            <summary>
+            Closes all open sessions and shuts down the client API.
+            This should only be called during application shutdown or when an application is being suspended. <see cref="M:Nabto.Client.INabtoClient.Startup"/> must be called before using the client API when <see cref="M:Nabto.Client.INabtoClient.Shutdown"/> has been called.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.SetOption(System.String,System.String)">
+            <summary>
+            Changes the behaviour of the client API.
+            </summary>
+            <param name="option">The name of the option to set.</param>
+            <param name="value">The value to assign to the option.</param>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.SignUp(System.String,System.String)">
+            <summary>
+            Creates a new account on the portal specified in the configuration file.
+            </summary>
+            <param name="email">The desired email address for the profile.</param>
+            <param name="password">The desired password for the profile.</param>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.CreateProfile(System.String,System.String)">
+            <summary>
+            Create a client profile (private key + signed certificate) on this computer for the specified registered user.
+            Note: This method is automatically invoked when needed during session creation.
+            </summary>
+            <param name="email">The email address associated with the account to create.</param>
+            <param name="password">The password associated with the account to create.</param>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.ResetAccountPassword(System.String)">
+            <summary>
+            Requests that a reset password email should be sent to the specified account.
+            </summary>
+            <param name="email">The email address associated with the account.</param>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.CreateSession(System.String,System.String)">
+            <summary>
+            Creates a new session using the specified account information.
+            </summary>
+            <param name="email">The email address associated with the account.</param>
+            <param name="password">The password associated with the account.</param>
+            <returns>A Session object encapsulating the new Nabto session.</returns>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.CreateGuestSession">
+            <summary>
+            Creates a session using guest credentials.
+            </summary>
+            <returns>The newly created guest session.</returns>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.Dispose">
+            <summary>
+            Closes all sessions and shuts down the native client API.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.GetCertificates">
+            <summary>
+            Gets a list of previously used certificates.
+            </summary>
+            <returns>The list of certificates.</returns>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.GetLocalDevices">
+            <summary>
+            Gets a list of the locally discoverable devices.
+            </summary>
+            <returns>The discovered devices.</returns>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.GetProtocolPrefixes">
+            <summary>
+            Gets a list of supported protocol prefixes.
+            </summary>
+            <returns>The supported prefixes.</returns>
+        </member>
+        <member name="M:Nabto.Client.INabtoClient.ProbeNetwork(System.Int32)">
+            <summary>
+            Attempts to connect to the probing service on portal specified in the current configuration to determine connectivity status.
+            </summary>
+            <param name="timeout">The timeout for the test (in milliseconds).</param>
+        </member>
+        <member name="P:Nabto.Client.INabtoClient.ApplicationName">
+            <summary>
+            Sets or gets the application name used when generating the log file.
+            The application name must be set before the client API is started and can not be changed once started.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.INabtoClient.NativeClientLibraryVersion">
+            <summary>
+            Gets the version information for the native client library.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.INabtoClient.Version">
+            <summary>
+            Gets the version information for the managed client library.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.INabtoClient.BuildDate">
+            <summary>
+            Gets the build date of the managed client API.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.Interop.PlatformBits">
+            <summary>
+            The CPU bus widths supported by the client API.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Interop.PlatformBits.Unknown">
+            <summary>
+            Bus width could not be determined.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Interop.PlatformBits.Bits32">
+            <summary>
+            Bus width is 32 bits.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Interop.PlatformBits.Bits64">
+            <summary>
+            Bus width is 64 bits.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.Interop.PlatformInformation">
+            <summary>
+            Provides information about the current platform.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Interop.PlatformInformation.PlatformType">
+            <summary>
+            The current platform type (the underlying operating system API).
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Interop.PlatformInformation.Bits">
+            <summary>
+            The bus width of the current CPU.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.Interop.PlatformType">
+            <summary>
+            The platform types (operating system APIs) supported by the client API.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Interop.PlatformType.Unknown">
+            <summary>
+            Platform type could not be determined.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Interop.PlatformType.Win32">
+            <summary>
+            The underlying platform is Win32.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Interop.PlatformType.WinRT">
+            <summary>
+            The underlying platform is WinRT (Windows Store).
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Interop.PlatformType.WindowsPhone8">
+            <summary>
+            The underlying platform is Windows Phone 8 (or newer).
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.Interop.Win32.Win32InteropAdapter">
+            <summary>
+            Managed wrapper encapsulating the native Nabto client API.
+            For documentation see nabto_client_api.h.
+            Supported platforms: Windows XP, Windows 7, Windows 8 Desktop, Linux (Mono)
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.Interop.Win32.Win32NativeMethods">
+            <summary>
+            Managed wrapper encapsulating the Nabto client API.
+            For documentation see nabto_client_api.h.
+            Supported platforms: Windows XP, Windows 7, Linux (Mono)
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.InvalidEmailException">
+            <summary>
+            The exception that is thrown when an email address given to a method is not valid.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.InvalidPasswordException">
+            <summary>
+            The exception that is thrown when an email-password pair doesn't match.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.MissingProfileException">
+            <summary>
+            The exception that is thrown when the specified profile has not been created locally.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.NabtoClient">
+            <summary>
+            The Nabto client API entry point.
+            Only one instance of this class may exist in a process!
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.#cctor">
+            <summary>
+            A static constructor ensures that all type initializers for static fields are executed when the class is accessed the first time.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.#ctor(System.Boolean)">
+            <summary>
+            Optionally initializes the native client API.
+            </summary>
+            <param name="callStartup">If true Startup is automatically called after construction. Set to false if one or more client API options must be changed prior to startup.</param>
+            <exception cref="T:Nabto.Client.NabtoClientException"/>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.#ctor">
+            <summary>
+            Initializes the native client API.
+            </summary>
+            <exception cref="T:Nabto.Client.NabtoClientException"/>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.Startup">
+            <summary>
+            Starts the client API.
+            Startup is performed automatically during normal usage and only needs to be called if <see cref="M:Nabto.Client.NabtoClient.Shutdown"/> has been called.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.Shutdown">
+            <summary>
+            Closes all open sessions and shuts down the client API.
+            This should only be called during application shutdown or when an application is being suspended. <see cref="M:Nabto.Client.NabtoClient.Startup"/> must be called before using the client API when <see cref="M:Nabto.Client.NabtoClient.Shutdown"/> has been called.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.SetOption(System.String,System.String)">
+            <summary>
+            Changes the behaviour of the client API.
+            </summary>
+            <param name="option">The name of the option to set.</param>
+            <param name="value">The value to assign to the option.</param>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.SetOption(Nabto.Client.ClientApiOption,System.String)">
+            <summary>
+            Changes the behaviour of the client API.
+            </summary>
+            <param name="option">The option to set.</param>
+            <param name="value">The value to assign to the option.</param>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.SignUp(System.String,System.String)">
+            <summary>
+            Creates a new account on the portal specified in the configuration file.
+            </summary>
+            <param name="email">The desired email address for the profile.</param>
+            <param name="password">The desired password for the profile.</param>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.CreateProfile(System.String,System.String)">
+            <summary>
+            Create a client profile (private key + signed cert) on this computer for the specified registered user.
+            Note: This method is automatically invoked when needed during session creation.
+            </summary>
+            <param name="email">The email address associated with the account to create.</param>
+            <param name="password">The password associated with the account to create.</param>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.ResetAccountPassword(System.String)">
+            <summary>
+            Requests that a reset password email should be sent to the specified account.
+            </summary>
+            <param name="email">The email address associated with the account.</param>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.CreateSession(System.String,System.String)">
+            <summary>
+            Creates a new session using the specified account information.
+            </summary>
+            <param name="email">The email address associated with the account.</param>
+            <param name="password">The password associated with the account.</param>
+            <returns>A Session object encapsulating the new Nabto session.</returns>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.CreateGuestSession">
+            <summary>
+            Creates a session using guest credentials.
+            </summary>
+            <returns>The newly created guest session.</returns>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.GetProtocolPrefixes">
+            <summary>
+            Gets a list of supported protocol prefixes.
+            </summary>
+            <returns>The supported prefixes.</returns>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.GetCertificates">
+            <summary>
+            Gets a list of previously used certificates.
+            </summary>
+            <returns>The list of certificates.</returns>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.GetLocalDevices">
+            <summary>
+            Gets a list of the locally discoverable devices.
+            </summary>
+            <returns>The discovered devices.</returns>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.ProbeNetwork(System.Int32)">
+            <summary>
+            Attempts to connect to the probing service on portal specified in the current configuration to determine connectivity status.
+            </summary>
+            <param name="timeout">The timeout for the test (in milliseconds).</param>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.ProbeNetwork(System.Int32,System.String)">
+            <summary>
+            Attempts to connect to the probing service on specified host to determine network connectivity status.
+            </summary>
+            <param name="timeout">The timeout for the test (in milliseconds).</param>
+            <param name="host">The host to connect to during the test.</param>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.Dispose">
+            <summary>
+            Closes all sessions and shuts down the native client API.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.Finalize">
+            <summary>
+            Finalizer.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.NabtoClient.Dispose(System.Boolean)">
+            <summary>
+            Closes all sessions and shuts down the native client API.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="P:Nabto.Client.NabtoClient.ApplicationName">
+            <summary>
+            Sets or gets the application name used when generating the log file.
+            Can not be changed once the API has been started.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.NabtoClient.HomeDirectory">
+            <summary>
+            Gets or sets the directory used by Nabto for dynamic resources.
+            Can not be changed once the API has been started.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.NabtoClient.NativeClientLibraryVersion">
+            <summary>
+            Gets the version information for the native client library.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.NabtoClient.Version">
+            <summary>
+            Gets the version information for the managed client library.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.NabtoClient.BuildDate">
+            <summary>
+            Gets the build date of the managed client API.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.NoNetworkException">
+            <summary>
+            The exception that is thrown when the probe host could not be reached.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.PortalLoginException">
+            <summary>
+            The exception that is thrown when a specified account was not found on the portal or the email-password pair doesn't match.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.QueryModel.unabto_queries">
+            <remarks/>
+        </member>
+        <member name="M:Nabto.Client.QueryModel.unabto_queries.TryDeserialize(System.String,Nabto.Client.QueryModel.unabto_queries@)">
+            <summary>
+            Tries to deserialize the specified device query definition file.
+            </summary>
+            <param name="path">Path to a query defintion file (a device specific unabto_queries.xml file).</param>
+            <param name="queries">The deserialized query definition or null.</param>
+            <returns>True if deserialization succeeded.</returns>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queries.query">
+            <remarks/>
+        </member>
+        <member name="T:Nabto.Client.QueryModel.parameter">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.parameter.name">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.parameter.type">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.parameter.default">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.parameter.representation">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.parameter.representationSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Nabto.Client.QueryModel.parameterType">
+            <remarks/>
+        </member>
+        <member name="F:Nabto.Client.QueryModel.parameterType.uint8">
+            <remarks/>
+        </member>
+        <member name="F:Nabto.Client.QueryModel.parameterType.uint16">
+            <remarks/>
+        </member>
+        <member name="F:Nabto.Client.QueryModel.parameterType.uint32">
+            <remarks/>
+        </member>
+        <member name="F:Nabto.Client.QueryModel.parameterType.int8">
+            <remarks/>
+        </member>
+        <member name="F:Nabto.Client.QueryModel.parameterType.int16">
+            <remarks/>
+        </member>
+        <member name="F:Nabto.Client.QueryModel.parameterType.int32">
+            <remarks/>
+        </member>
+        <member name="F:Nabto.Client.QueryModel.parameterType.float">
+            <remarks/>
+        </member>
+        <member name="F:Nabto.Client.QueryModel.parameterType.double">
+            <remarks/>
+        </member>
+        <member name="F:Nabto.Client.QueryModel.parameterType.raw">
+            <remarks/>
+        </member>
+        <member name="T:Nabto.Client.QueryModel.parameterRepresentation">
+            <remarks/>
+        </member>
+        <member name="F:Nabto.Client.QueryModel.parameterRepresentation.ascii">
+            <remarks/>
+        </member>
+        <member name="F:Nabto.Client.QueryModel.parameterRepresentation.hex">
+            <remarks/>
+        </member>
+        <member name="T:Nabto.Client.QueryModel.parameters">
+            <remarks/>
+        </member>
+        <member name="T:Nabto.Client.QueryModel.list">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.list.parameter">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.list.list1">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.list.name">
+            <remarks/>
+        </member>
+        <member name="T:Nabto.Client.QueryModel.unabto_queriesQuery">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queriesQuery.request">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queriesQuery.response">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queriesQuery.name">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queriesQuery.description">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queriesQuery.id">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queriesQuery.template">
+            <remarks/>
+        </member>
+        <member name="T:Nabto.Client.QueryModel.unabto_queriesQueryRequest">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queriesQueryRequest.parameter">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queriesQueryRequest.list">
+            <remarks/>
+        </member>
+        <member name="T:Nabto.Client.QueryModel.unabto_queriesQueryResponse">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queriesQueryResponse.parameter">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queriesQueryResponse.list">
+            <remarks/>
+        </member>
+        <member name="P:Nabto.Client.QueryModel.unabto_queriesQueryResponse.format">
+            <remarks/>
+        </member>
+        <member name="T:Nabto.Client.Session">
+            <summary>
+            A Nabto session for a specific user.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.Session.Create(Nabto.Client.NabtoClient,System.String,System.String,System.Boolean)">
+            <summary>
+            Create a Session.
+            </summary>
+            <param name="owner"></param>
+            <param name="email"></param>
+            <param name="password"></param>
+            <param name="attemptCreateProfile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Nabto.Client.Session.CreateDeviceConnection(System.String)">
+            <summary>
+            Creates a connection to the specified device.
+            No communication with the device actually occurs until operations are performed on the DeviceConnection object.
+            </summary>
+            <param name="deviceId">The identifier of the device.</param>
+            <returns>The newly created device connection object.</returns>
+        </member>
+        <member name="M:Nabto.Client.Session.GetDeviceConnection(System.String,System.Boolean)">
+            <summary>
+            Returns a DeviceConnection from the DeviceConnection pool. If a connection to the specified device does not exist in the pool one is created.
+            </summary>
+            <param name="deviceId">Name of the target device.</param>
+            <param name="createdImplicitly">Indicates wether the connection was established explicitly by an application or implicitly through the CreateStream or CreateTunnel methods.</param>
+            <returns>The DeviceConnection.</returns>
+        </member>
+        <member name="M:Nabto.Client.Session.FetchUrl(System.String,System.Boolean)">
+            <summary>
+            Requests the specified URL and returns the data and MIME type.
+            </summary>
+            <param name="url">The URL to fetch.</param>
+            <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+            <returns>The data fetched from the device.</returns>
+        </member>
+        <member name="M:Nabto.Client.Session.FetchUrl(System.String,System.String@,System.Boolean)">
+            <summary>
+            Requests the specified URL and returns the data and MIME type.
+            </summary>
+            <param name="url">The URL to fetch.</param>
+            <param name="mimeType">The MIME type associated with the URL.</param>
+            <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+            <returns>The data fetched from the device.</returns>
+        </member>
+        <member name="M:Nabto.Client.Session.FetchUrlAsString(System.String,System.Boolean)">
+            <summary>
+            Fetch the specified resource from the specified device.
+            </summary>
+            <param name="url">The URL including device and resource.</param>
+            <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+            <returns>The data fetched from the device encoded as a string using the current DefaultEncoding.</returns>
+        </member>
+        <member name="M:Nabto.Client.Session.FetchUrlAsString(System.String,System.String@,System.Boolean)">
+            <summary>
+            Fetch the specified resource from the specified device and return the MIME type of the response.
+            </summary>
+            <param name="url">The URL including device and resource.</param>
+            <param name="mimeType">The MIME type of the reponse.</param>
+            <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+            <returns>The data fetched from the device encoded as a string using the current DefaultEncoding.</returns>
+        </member>
+        <member name="M:Nabto.Client.Session.SubmitPostData(System.String,System.Byte[],System.String,System.Byte[]@,System.String@,System.Boolean)">
+            <summary>
+            Submits specified data synchronously to specified URL through specified session.
+            If destination host is HTTP enabled, use HTTP POST semantics for the submission.
+            Note: Only "application/x-www-form-urlencoded" type data is currently supported as data for submission (any type of data may still be retrieved, though).
+            </summary>
+            <param name="url">The URL to submit data to.</param>
+            <param name="postData">The data to submit.</param>
+            <param name="postMimeType">MIME type of data to submit.</param>
+            <param name="result">The returned HTML data.</param>
+            <param name="resultMimeType">MIME type of the response.</param>
+            <param name="appendSessionToken">Determines whether the session token should automatically be appended or not.</param>
+        </member>
+        <member name="M:Nabto.Client.Session.CreateStream(System.String)">
+            <summary>
+            Creates a new stream to the specified device.
+            </summary>
+            <param name="deviceId">The device to connect to.</param>
+            <returns>The newly created stream.</returns>
+        </member>
+        <member name="M:Nabto.Client.Session.CreateStream(System.String,Nabto.Client.Streaming.StreamService,System.String)">
+            <summary>
+            Creates a new stream to the specifed device and initializes the specified service.
+            </summary>
+            <param name="deviceId">The device to connect to.</param>
+            <param name="service">The service to initialize.</param>
+            <param name="serviceParameters">Optional initialization parameters for the service.</param>
+            <returns>The newly created stream.</returns>
+        </member>
+        <member name="M:Nabto.Client.Session.CreateStream(System.String,System.String)">
+            <summary>
+            Creates a new stream to the specifed device and initializes the specified service.
+            </summary>
+            <param name="deviceId">The device to connect to.</param>
+            <param name="serviceConfiguration">The service to initialize and any configuration parameters needed during initialization.</param>
+            <returns>The newly created stream.</returns>
+        </member>
+        <member name="M:Nabto.Client.Session.CreateTunnel(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Creates a tunnel to the specified device. 
+            </summary>
+            <param name="deviceId">The device to connect to.</param>
+            <param name="localPort">The local TCP port to listen on.</param>
+            <param name="remoteHost">The host the remote endpoint establishes a TCP connection to.</param>
+            <param name="remotePort">The TCP port to connect to on remoteHost.</param>
+            <returns>The newly created tunnel.</returns>
+        </member>
+        <member name="M:Nabto.Client.Session.Dispose">
+            <summary>
+            Closes all device connections and tunnels opened using this session and destroys the session.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.Session.Finalize">
+            <summary>
+            Finalizer.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.Session.Dispose(System.Boolean)">
+            <summary>
+            Performs the actual disposing of the Session and the underlying data structure.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Nabto.Client.Session.GetNativeHandle">
+            <summary>
+            Gets native handle for the Session.
+            Throws ObjectDisposedException if the Session has been disposed.
+            </summary>
+            <returns>The native handle.</returns>
+            <exception cref="T:System.ObjectDisposedException"></exception>
+        </member>
+        <member name="M:Nabto.Client.Session.ToString">
+            <summary>
+            Returns a string that represents the current ClientSession object.
+            </summary>
+            <returns>The string representing the current ClientSession object.</returns>
+        </member>
+        <member name="P:Nabto.Client.Session.DefaultEncoding">
+            <summary>
+            The encoding used when converting a raw result from FetchUrl to a string.
+            Default is iso-8859-1.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Session.Email">
+            <summary>
+            The email associated with the current session.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Session.Password">
+            <summary>
+            The password associated with the current session.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Session.Token">
+            <summary>
+            Gets the token related to the current session.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Session.IsGuestSession">
+            <summary>
+            True if the session has guest credentials.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.StreamClosedException">
+            <summary>
+            The exception that is thrown when an internal error is not correctly handled by the API.
+            This exception should always lead to application shutdown as the internal state of the Nabto client API might be invalid.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.StreamingNotSupportedException">
+            <summary>
+            The exception that is thrown when a streaming could not be opened to a device due to the device not supporting streams.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.Streaming.DeviceStream">
+            <summary>
+            Represents a stream to a Nabto device.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.Streaming.DeviceStream.Flush">
+            <summary>
+            Flushes data from the stream. This method is reserved for future use. Invoking it has no effect.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.Streaming.DeviceStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            Sets the current position of the stream to the given value. This method is not supported and always throws a System.NotSupportedException.
+            </summary>
+            <exception cref="T:System.NotSupportedException">Always thrown as NabtoStream does not support seeking.</exception>
+        </member>
+        <member name="M:Nabto.Client.Streaming.DeviceStream.SetLength(System.Int64)">
+            <summary>
+            Sets the length of the stream. This method is not supported and always throws a System.NotSupportedException.
+            </summary>
+            <exception cref="T:System.NotSupportedException">Always thrown as NabtoStream does not support seeking.</exception>
+        </member>
+        <member name="M:Nabto.Client.Streaming.DeviceStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads data from the NabtoStream.
+            </summary>
+            <param name="buffer">An array of type Byte that is the location in memory to store data read from the stream.</param>
+            <param name="offset">The location in buffer to begin storing the data to.</param>
+            <param name="count">The maximum number of bytes to read from the stream.</param>
+            <returns>The total number of bytes read into the buffer. This can be less than the number of bytes requested if that many bytes are not currently available.</returns>
+            <exception cref="T:System.ObjectDisposedException">Thrown if the stream has been .</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown if the given buffer was null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if offset and count indexes outside the given buffer.</exception>
+        </member>
+        <member name="M:Nabto.Client.Streaming.DeviceStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Write data to the stream.
+            </summary>
+            <param name="buffer">An array of type Byte that contains the data to write to the NabtoStream.</param>
+            <param name="offset">The location in buffer from which to start writing data.</param>
+            <param name="count">The number of bytes to write to the NabtoStream.</param>
+        </member>
+        <member name="M:Nabto.Client.Streaming.DeviceStream.Dispose(System.Boolean)">
+            <summary>
+            Performs disposal of the NabtoStream and the underlying unmanaged data. Any data not yet sent will be lost.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.Streaming.DeviceStream.ToString">
+            <summary>
+            Returns the native Nabto client stream handle as string.
+            </summary>
+            <returns>The handle as a string.</returns>
+        </member>
+        <member name="P:Nabto.Client.Streaming.DeviceStream.ServiceConfigurationResponse">
+            <summary>
+            The string returned from the device during the initial stream configuration.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Streaming.DeviceStream.ConnectionType">
+            <summary>
+            Gets the type of the underlying connection.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Streaming.DeviceStream.CanTimeout">
+            <summary>
+            Gets a value that determines whether the current stream can time out.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Streaming.DeviceStream.ReadTimeout">
+            <summary>
+            Sets the timeout for read operations in milliseconds.
+            -1 (default) means wait indefinitely, 0 means non-blocking.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Streaming.DeviceStream.WriteTimeout">
+            <summary>
+            Sets the timeout for write operations in milliseconds.
+            -1 (default) means wait indefinitely, 0 means non-blocking.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Streaming.DeviceStream.CanRead">
+            <summary>
+            Gets a value indicating whether the NabtoStream supports reading. This property is always true.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Streaming.DeviceStream.CanSeek">
+            <summary>
+            Gets a value indicating whether the NabtoStream supports seeking. This property is always false.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Streaming.DeviceStream.CanWrite">
+            <summary>
+            Gets a value indicating whether the NabtoStream supports writing. This property is always true.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Streaming.DeviceStream.Length">
+            <summary>
+            Gets the amount of data that can be read from the stream at this moment.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Streaming.DeviceStream.Position">
+            <summary>
+            Gets or sets the current position in the stream. This property is not supported and always throws a System.NotSupportedException.
+            </summary>
+            <exception cref="T:System.NotSupportedException">Always thrown as NabtoStream does not support getting or setting a position.</exception>
+        </member>
+        <member name="P:Nabto.Client.Streaming.DeviceStream.DataAvailable">
+            <summary>
+            DataAvailable is true if data is ready to be read from the stream. 
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.Streaming.StreamOption">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Streaming.StreamOption.ReceiveTimeout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Streaming.StreamOption.SendTimeout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.Streaming.StreamService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Streaming.StreamService.None">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Streaming.StreamService.Echo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Streaming.StreamService.Multiplexed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Streaming.StreamService.NonMultiplexed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Streaming.StreamService.ForcedNonMultiplexed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Streaming.StreamService.Benchmark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Streaming.StreamService.Tunnel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Streaming.StreamService.Serial">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.Tunneling.Tunnel">
+            <summary>
+            Represents a stream connection from a client to a device.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.Tunneling.Tunnel.ToString">
+            <summary>
+            Returns the native Nabto client tunnel handle as string.
+            </summary>
+            <returns>The handle as a string.</returns>
+        </member>
+        <member name="M:Nabto.Client.Tunneling.Tunnel.Dispose">
+            <summary>
+            Disposes the current tunnel.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.Tunneling.Tunnel.Finalize">
+            <summary>
+            Finalizer.
+            </summary>
+        </member>
+        <member name="M:Nabto.Client.Tunneling.Tunnel.Dispose(System.Boolean)">
+            <summary>
+            Disposes the current tunnel.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Tunneling.Tunnel.Version">
+            <summary>
+            Retrieves version information for the tunnel.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Tunneling.Tunnel.State">
+            <summary>
+            Retrieves the current state of the tunnel.
+            </summary>
+        </member>
+        <member name="P:Nabto.Client.Tunneling.Tunnel.LastError">
+            <summary>
+            Retrieves the last error for the tunnel.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.Tunneling.TunnelState">
+            <summary>
+            Represents the possible states of a Tunnel.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Tunneling.TunnelState.Closed">
+            <summary>
+            The tunnel is closed.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Tunneling.TunnelState.Connecting">
+            <summary>
+            The tunnel is connecting.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Tunneling.TunnelState.ReadyForReconnect">
+            <summary>
+            The other end of the tunnel (the device) has disappeared. The client must connect again.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Tunneling.TunnelState.Unknown">
+            <summary>
+            An unknown internal error has occured.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Tunneling.TunnelState.Local">
+            <summary>
+            The peers are connected via a local peer to peer connection.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Tunneling.TunnelState.RemotePeerToPeer">
+            <summary>
+            The peers are connected via a remote peer to peer connection.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Tunneling.TunnelState.RemoteRelay">
+            <summary>
+            The peers are connected using the base station as a relay for a fallback connection.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Tunneling.TunnelState.RemoteRelayMicro">
+            <summary>
+            The peers are connected using the base station as a relay for a fallback connection.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.Tunneling.TunnelType">
+            <summary>
+            Represents the underlying connection type of a Tunnel.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Tunneling.TunnelType.Local">
+            <summary>
+            A local peer to peer connection.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Tunneling.TunnelType.RemotePeerToPeer">
+            <summary>
+            A remote peer to peer connection.
+            </summary>
+        </member>
+        <member name="F:Nabto.Client.Tunneling.TunnelType.RemoteRelay">
+            <summary>
+            A remote connection using the base station as a relay.
+            </summary>
+        </member>
+        <member name="T:Nabto.Client.UnhandledInternalException">
+            <summary>
+            The exception that is thrown when an internal error is not correctly handled by the API.
+            This exception should always lead to application shutdown as the internal state of the Nabto client API might be invalid.
+            </summary>
+        </member>
+        <member name="T:Nabto.Log">
+            <summary>
+            Provides wrapper methods for writing to the debug console.
+            </summary>
+        </member>
+        <member name="M:Nabto.Log.Write(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Nabto.Log.Write(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:Nabto.Log.Write(System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="format"></param>
+            <param name="arguments"></param>
+        </member>
+    </members>
+</doc>

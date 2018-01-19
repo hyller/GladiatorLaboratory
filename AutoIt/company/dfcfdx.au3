@@ -71,3 +71,4 @@ Sleep(1000)
 WinClose($hWin)
 Sleep(1000)
 Send("{ENTER}");
+Sleep(1000)

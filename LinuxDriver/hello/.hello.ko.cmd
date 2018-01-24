@@ -1,0 +1,1 @@
+cmd_/home/hyller/share/GladiatorLaboratory/LinuxDriver/hello/hello.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/hyller/share/GladiatorLaboratory/LinuxDriver/hello/hello.ko /home/hyller/share/GladiatorLaboratory/LinuxDriver/hello/hello.o /home/hyller/share/GladiatorLaboratory/LinuxDriver/hello/hello.mod.o
